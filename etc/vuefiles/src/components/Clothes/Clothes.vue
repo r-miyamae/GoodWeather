@@ -41,6 +41,8 @@ export default {
     position: relative;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
     -webkit-transition: .6s;
     transition: .6s;
 }
