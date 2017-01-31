@@ -71,5 +71,6 @@ export default {
 <style>
 #app {
   height: 100%;
+  font-family: sans-serif;
 }
 </style>
