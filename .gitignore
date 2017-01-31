@@ -23,3 +23,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+etc/vuefiles/node_modules
