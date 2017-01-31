@@ -19,6 +19,7 @@ export default {
     width: 100%;
     height: 90%;
     z-index: 1000;
+    
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 

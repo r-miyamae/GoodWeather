@@ -1,7 +1,9 @@
 <template>
     <div class="top__clothes" :class="{ 'top__clothes-toggle': isTurn }" @click="doTurn">
-        <ClothHeader></ClothHeader>
-        <ClothImages :clothes="clothes"></ClothImages>
+        <div>
+          <ClothHeader></ClothHeader>
+          <ClothImages :clothes="clothes"></ClothImages>
+        </div>
         <ClothesDescription :description="clothes.clothes_description"></ClothesDescription>
     </div>
 </template>
