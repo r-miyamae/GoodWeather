@@ -1,5 +1,5 @@
 <template>
-    <div class="top__clothes">
+    <div class="top__clothes" :class="{ 'top__clothes-toggle': isTurn }" @click="doTurn">
         <ClothHeader></ClothHeader>
         <ClothImages :clothes="clothes"></ClothImages>
         <ClothesDescription :description="clothes.clothes_description"></ClothesDescription>
@@ -17,6 +17,20 @@ export default {
     ClothHeader,
     ClothImages,
     ClothesDescription
+  },
+  methods: {
+    doTurn: function () {
+      if (!this.isTurn) {
+        this.isTurn = true
+      } else {
+        this.isTurn = false
+      }
+    }
+  },
+  data () {
+    return {
+      isTurn: false
+    }
   }
 }
 </script>
@@ -30,7 +44,7 @@ export default {
     -webkit-transition: .6s;
     transition: .6s;
 }
-.top__clothes:hover {
+.top__clothes-toggle {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
