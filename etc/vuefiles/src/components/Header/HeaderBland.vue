@@ -18,10 +18,11 @@
     width: 100%;
 }
 .header__bland-icon {
-    /*background-image: url("");*/
+    background-image: url('~assets/good_weather_icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     margin-left: 3%;
     width: 3em;
     height: 3em;
-    background-color: #ffffff;
 }
 </style>
