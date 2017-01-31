@@ -1,6 +1,7 @@
 buildscript {
 	repositories {
 		jcenter()
+		mavenCentral()
 	}
 
 	dependencies {
@@ -41,4 +42,7 @@ configurations {
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web:1.4.4.RELEASE")
 	compile("org.springframework.boot:spring-boot-starter-jetty:1.4.4.RELEASE")
+	compile 'com.google.code.gson:gson:2.7'
+	compile 'org.projectlombok:lombok:1.14.4'
+	compile 'net.arnx:jsonic:1.3.9'
 }
