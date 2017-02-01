@@ -14,6 +14,7 @@ import Clothes from './components/Clothes/Clothes.vue'
 import Weather from './components/Weather/Weather.vue'
 import SelectLocation from './components/SelectLocation/SelectLocation.vue'
 import Footer from './components/Footer/Footer.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -55,6 +56,17 @@ export default {
         },
         user_place: '大阪府'
       }
+
+      var self = this
+      var url = 'http://api.openweathermap.org/data/2.5/weather?units=metric&q=Tokyo,jp&APPID=be62026a64d3934038d07adcc1a1b089' // ここを将来的にシステムAPIのURLに変更する
+
+      axios.get(url)
+      .then(function (response) {
+        self.dataForTop = response.data
+        // self.dataForTop.weather.humidity = response.data.main.humidity
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   },
   components: {
