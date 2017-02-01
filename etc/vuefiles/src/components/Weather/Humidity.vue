@@ -12,7 +12,7 @@ export default {
 
 <style>
 .top__weather-humidity {
-    width: 70%;
+    width: 100%;
     height: 50%;
     vertical-align: middle;
     margin: 0 auto;
