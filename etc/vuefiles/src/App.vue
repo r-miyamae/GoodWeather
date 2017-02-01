@@ -32,11 +32,10 @@ export default {
           weather_icon: 'fine.png',
           max_temperature: 30,
           min_temperature: 33.5,
-          max_humidity: 70,
-          min_humidity: 60
+          humidity: 70
         },
         clothes: {
-          clothes_description: '今日は暑いので、薄手の服装がおすすめ！だよぉぉおぉぉぉぉぉぉおぉぉぉぉおおぉぉぉおぉおぉぉおおおおおぉぉぉぉぉぉおおぉ',
+          clothes_description: '今日は暑いので、薄手の服装がおすすめよぉおぉぉぉぉおおぉぉぉおぉおぉぉおおおおおぉぉぉぉぉぉおおぉ',
           man_clothes: {
             inner_image: '/assets/img/clothes/t-shut.png',
             inner_color: '#04f33d',

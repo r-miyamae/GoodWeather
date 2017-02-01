@@ -1,7 +1,7 @@
 <template>
     <div class="top__weather-tempertureHumidity">
         <Temperture :maxTemperature="maxTemperature" :minTemperature="minTemperature"></Temperture>
-        <Humidity :maxHumidity="maxHumidity" :minHumidity="minHumidity"></Humidity>
+        <Humidity :humidity="humidity"></Humidity>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import Temperture from './Temperture.vue'
 import Humidity from './Humidity.vue'
 
 export default {
-  props: ['maxTemperature', 'minTemperature', 'maxHumidity', 'minHumidity'],
+  props: ['maxTemperature', 'minTemperature', 'humidity'],
   components: {
     Temperture,
     Humidity
