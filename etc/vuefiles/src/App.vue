@@ -39,7 +39,7 @@ export default {
           clothes_description: '今日は暑いので、薄手の服装がおすすめ！だよぉぉおぉぉぉぉぉぉおぉぉぉぉおおぉぉぉおぉおぉぉおおおおおぉぉぉぉぉぉおおぉ',
           man_clothes: {
             inner_image: '/assets/img/clothes/t-shut.png',
-            inner_color: '#0092ff',
+            inner_color: '#04f33d',
             outer_image: '/assets/img/clothes/cote.png',
             outer_color: '',
             bottom_image: '/assets/img/clothes/gens.png',

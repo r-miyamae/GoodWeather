@@ -1,6 +1,6 @@
 <template>
     <div class="top__clothes" :class="{ 'top__clothes-toggle': isTurn }" @click="doTurn">
-        <div>
+        <div class="top__clothes-front">
           <ClothHeader></ClothHeader>
           <ClothImages :clothes="clothes"></ClothImages>
         </div>
@@ -43,13 +43,16 @@ export default {
     position: relative;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    -webkit-transition: .6s;
+    -webkit-transition: -webkit-transform .6s;
     transition: .6s;
 }
 .top__clothes-toggle {
+    -ms-transform:rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
+}
+.top__clothes-front {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 </style>

@@ -18,12 +18,12 @@ export default {
     position: absolute;
     width: 100%;
     height: 90%;
-    z-index: 1000;
-    
+
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
     background-color: lightblue;
+    -ms-transform:rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
@@ -31,12 +31,12 @@ export default {
 .top__clothes-description-content {
     width: 80%;
     margin: 0 auto;
-    margin-top: 20vh;
+    margin-top: 15vh;
     position: relative;
     text-align: center;
     color: darkblue;
     font-weight: bold;
-    font-size: 4em;
+    font-size: 3.5em;
 }
 
 .top__clothes-description-info {

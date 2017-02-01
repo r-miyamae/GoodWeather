@@ -27,5 +27,7 @@ export default {
     height: 90%;
     z-index: 0;
     position: relative;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 </style>
