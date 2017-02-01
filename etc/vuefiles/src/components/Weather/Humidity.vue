@@ -1,14 +1,12 @@
 <template>
     <div class="top__weather-humidity">
-        <span class="top__weather-humidity-max">{{ maxHumidity }} ％</span><br>
-        /
-        <span class="top__weather-humidity-min">{{ minHumidity }} ％</span>
+        <span class="top__weather-humidity-max">{{ humidity }} ％</span><br>
     </div>
 </template>
 
 <script>
 export default {
-  props: ['maxHumidity', 'minHumidity']
+  props: ['humidity']
 }
 </script>
 

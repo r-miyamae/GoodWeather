@@ -1,7 +1,7 @@
 <template>
     <div class="top__weather">
         <Icon :weatherImageName="weather.weather_icon"></Icon>
-        <TempertureHumidity :maxTemperature="weather.max_temperature" :minTemperature="weather.min_temperature" :maxHumidity="weather.max_humidity" :minHumidity="weather.min_humidity"></TempertureHumidity>
+        <TempertureHumidity :maxTemperature="weather.max_temperature" :minTemperature="weather.min_temperature" :humidity="weather.humidity"></TempertureHumidity>
     </div>
 </template>
 
