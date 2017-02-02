@@ -45,4 +45,6 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.7'
 	compile 'org.projectlombok:lombok:1.14.4'
 	compile 'net.arnx:jsonic:1.3.9'
+	compile group: 'org.mybatis', name: 'mybatis', version: '3.0.1'// 追加
+	compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'// 追加
 }
