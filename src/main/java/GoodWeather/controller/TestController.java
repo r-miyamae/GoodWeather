@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.*;
 import java.util.List;
 import java.util.Map;
 
@@ -22,21 +23,40 @@ public class TestController {
 //        return "これは /test のページです。";
 //    }
 
-    List<Map<String, Object>> home() {
-        String resource = "mybatis-config.xml";
-        try (Reader in = Resources.getResourceAsReader(resource)) {
-            // ★設定ファイルを元に、 SqlSessionFactory を作成する
-            SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+    public String index() {
+        Connection connection = null;
+        Statement statement = null;
 
-            // ★SqlSessionFactory から SqlSession を生成する
-            SqlSession session = factory.openSession();
-            // ★SqlSession を使って SQL を実行する
-            List<Map<String, Object>> result = session.selectList("sample.mybatis.selectTest");
-            return result;
-        } catch (IOException e) {
-            // nop
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+            statement = connection.createStatement();
+            String sql = "select * from cloth_genre_table";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println(rs.getString(1));
+                System.out.println(rs.getString(2));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
         return null;
     }
 
