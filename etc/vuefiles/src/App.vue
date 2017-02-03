@@ -30,31 +30,31 @@ export default {
     getDatas: function (event) {
       this.dataForTop = {
         weather: {
-          weather_icon: 'fine.png',
-          max_temperature: 30,
-          min_temperature: 33.5,
-          humidity: 70
+          weather_icon: '',
+          max_temperature: 0,
+          min_temperature: 0,
+          humidity: 0
         },
         clothes: {
-          clothes_description: '今日は暑いので、薄手の服装がおすすめよぉおぉぉぉぉおおぉぉぉおぉおぉぉおおおおおぉぉぉぉぉぉおおぉ',
+          clothes_description: '',
           man_clothes: {
-            inner_image: '/assets/img/clothes/t-shut.png',
-            inner_color: '#04f33d',
-            outer_image: '/assets/img/clothes/cote.png',
-            outer_color: '',
-            bottom_image: '/assets/img/clothes/gens.png',
-            bottom_color: '#9933ff'
-          },
-          woman_clothes: {
-            inner_image: '/assets/img/clothes/t-shut.png',
-            inner_color: '#ff3399',
+            inner_image: '',
+            inner_color: '',
             outer_image: '',
             outer_color: '',
-            bottom_image: '/assets/img/clothes/gens.png',
-            bottom_color: '#aa4455'
+            bottom_image: '',
+            bottom_color: ''
+          },
+          woman_clothes: {
+            inner_image: '',
+            inner_color: '',
+            outer_image: '',
+            outer_color: '',
+            bottom_image: '',
+            bottom_color: ''
           }
         },
-        user_place: '大阪府'
+        user_place: ''
       }
 
       var self = this
