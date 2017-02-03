@@ -136,8 +136,8 @@ public class RootApi {
         }
 
         Clothes clothes = new Clothes();
-        clothes.setManClothes(manClothes);
-        clothes.setWomanClothes(womanClothes);
+        clothes.setMan_clothes(manClothes);
+        clothes.setWoman_clothes(womanClothes);
         clothes.setClothes_description("Clothes_descriptionってDBから参照するの?");
 
         ResponseData responseData = new ResponseData();
@@ -172,9 +172,9 @@ public class RootApi {
         @Getter @Setter
         private String clothes_description;
         @Getter @Setter
-        private ManClothes manClothes;
+        private ManClothes man_clothes;
         @Getter @Setter
-        private WomanClothes womanClothes;
+        private WomanClothes woman_clothes;
     }
     private class ManClothes{
         @Getter @Setter
