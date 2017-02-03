@@ -58,12 +58,11 @@ export default {
       }
 
       var self = this
-      var url = 'http://api.openweathermap.org/data/2.5/weather?units=metric&q=Tokyo,jp&APPID=be62026a64d3934038d07adcc1a1b089' // ここを将来的にシステムAPIのURLに変更する
+      var url = '/api/v1/top'
 
       axios.get(url)
       .then(function (response) {
         self.dataForTop = response.data
-        // self.dataForTop.weather.humidity = response.data.main.humidity
       }).catch(function (error) {
         console.log(error)
       })
