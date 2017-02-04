@@ -1,13 +1,11 @@
 package GoodWeather.api;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import javax.servlet.http.HttpServletRequest;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -96,8 +94,6 @@ public class RootApi {
         weather.setHumidity(humidity_data);
         weather.setWeather_icon(weather_icon);
 
-        // TODO: DBから天気に合った服装を選ぶ処理
-
         //DBに接続
         Connection connection = null;
         Statement statement = null;
@@ -111,14 +107,39 @@ public class RootApi {
             connection = DriverManager.getConnection("jdbc:sqlite:test.db");
             statement = connection.createStatement();
 
-            //漢と女の服を全部出す(テスト用)
-            String get_man_inner = "select * from sample_clothes where clothGenreId LIKE '101'";//漢インナー(薄)
-            String get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111'";//漢アウター(薄)
-            String get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '121'";//漢ボトム(短)
+            //DBから不快指数に応じた服を選ぶ
+            String get_man_inner = "";
+            String get_man_outer = "";
+            String get_man_bottom = "";
 
-            String get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '201'";//女インナー(薄)
-            String get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
-            String get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '221'";//女ボトム(短)
+            String get_woman_inner = "";
+            String get_woman_outer = "";
+            String get_woman_bottom = "";
+            if(day_uncomfortablePts <= 54) {//冬服
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '102'";//漢インナー(厚)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '112'";//漢アウター(厚)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122'";//漢ボトム(長)
+
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '202'";//女インナー(厚)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '212'";//女アウター(厚)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222'";//女ボトム(長)
+            }else if(day_uncomfortablePts >= 75){//夏服
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '101'";//漢インナー(薄)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111'";//漢アウター(薄)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '12_'";//漢ボトム(短)or(長)
+
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '201'";//女インナー(薄)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '22_'";//女ボトム(短)or(長)
+            }else{//春、秋服
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '10_'";//漢インナー(薄)or(厚)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111'";//漢アウター(薄)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122'";//漢ボトム(長)
+
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '20_'";//女インナー(薄)or(厚)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222'";//女ボトム(長)
+            }
 
             //clothesDescription
             String get_day_clothes_description = "select description from clothes_description_table where " + day_uncomfortablePts + " >= minUncomfortablePts and " + day_uncomfortablePts + " <= maxUncomfortablePts";
