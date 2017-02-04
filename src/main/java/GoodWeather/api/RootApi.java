@@ -172,8 +172,8 @@ public class RootApi {
             rs_clothes.next();
             clothes.setNight_clothes_description(rs_clothes.getString(1));
 
-            clothes.setManClothes(manClothes);
-            clothes.setWomanClothes(womanClothes);
+            clothes.setMan_clothes(manClothes);
+            clothes.setWoman_clothes(womanClothes);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -230,9 +230,9 @@ public class RootApi {
         @Getter @Setter
         private String night_clothes_description;
         @Getter @Setter
-        private ManClothes manClothes;
+        private ManClothes man_clothes;
         @Getter @Setter
-        private WomanClothes womanClothes;
+        private WomanClothes woman_clothes;
     }
     private class ManClothes{
         @Getter @Setter
