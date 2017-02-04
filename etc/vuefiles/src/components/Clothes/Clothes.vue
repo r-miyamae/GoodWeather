@@ -4,7 +4,7 @@
           <ClothHeader></ClothHeader>
           <ClothImages :clothes="clothes"></ClothImages>
         </div>
-        <ClothesDescription :description="clothes.clothes_description"></ClothesDescription>
+        <ClothesDescription :dayDescription="clothes.day_clothes_description" :nightDescription="clothes.night_clothes_description"></ClothesDescription>
     </div>
 </template>
 

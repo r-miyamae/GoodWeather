@@ -1,5 +1,5 @@
 <template>
-    <img class="top__weather-icon" :src="'/assets/img/weather/' + weatherImageName" :alt="weatherName">
+    <img class="top__weather-icon" :src="'/assets/weather/' + weatherImageName" :alt="weatherName">
 </template>
 
 <script>

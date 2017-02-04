@@ -1,7 +1,8 @@
 <template>
     <div class="top__clothes-description">
         <p class="top__clothes-description-content">
-            {{ description }}
+            昼 : {{ dayDescription }} <br>
+            夜 : {{ nightDescription }}
         </p>
         <span class="top__clothes-description-info">／</span>
     </div>
@@ -9,7 +10,7 @@
 
 <script>
 export default {
-  props: ['description']
+  props: ['dayDescription', 'nightDescription']
 }
 </script>
 
