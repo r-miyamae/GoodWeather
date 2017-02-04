@@ -1,17 +1,19 @@
 package GoodWeather.api;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import javax.servlet.http.HttpServletRequest;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.xml.ws.Response;
 import java.sql.*;
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -19,8 +21,7 @@ public class RootApi {
     private final RestTemplate rt = new RestTemplate();
     // お天気APIの URL
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=";
-    // Userの場所
-    private String location = "Tokyo,jp";
+
     //パラメータ
     private final String parameter = "&units=metric";
     // APIキー
@@ -28,29 +29,72 @@ public class RootApi {
 
     // 外部サービスの JSON を加工して返却。
     @RequestMapping("/top")
-    public ResponseData top() {
-
+    public ResponseData top(@RequestParam("loc") Optional<String> loc) {
+        // Userの場所
+        String location = "Tokyo,jp";
+        if(loc.isPresent()){
+            location = loc.get();
+        }
         // APIからJSONを取得
         Gson gson = new Gson();
         String rawData = rt.getForObject(url + location + parameter + token, String.class);
         //受け取ったJSONを加工
-
         //APIから返されるままのJSONくん
         JsonObject rawJson = gson.fromJson(rawData, JsonObject.class);
         //天気情報(main)
         JsonObject weather_json = rawJson.getAsJsonArray("weather").get(0).getAsJsonObject();
         String weather_data = weather_json.getAsJsonPrimitive("main").toString();
+        String weather_description = weather_json.getAsJsonPrimitive("description").toString();
+        String weather_icon = weather_json.getAsJsonPrimitive("icon").toString();
+        System.out.println(weather_description);
+        switch (weather_data) {
+            case "\"Clear\"":
+                weather_icon = "Clear.png";
+                break;
+            case "\"Thunderstorm\"":
+                weather_icon = "Thunderstorm.png";
+                break;
+            case "\"Snow\"":
+                if (weather_description.equals("\"light snow\"")) {
+                    weather_icon = "lightsnow.png";
+                    break;
+                }
+                weather_icon = "Snow.png";
+                break;
+            case "\"Clouds\"":
+                if (weather_description.equals("\"few clouds\"")) {
+                    weather_icon = "fewclouds.png";
+                }
+                weather_icon = "Clouds.png";
+                break;
+            case "\"Rain\"":
+                if (weather_description.equals("\"light lain\"")) {
+                    weather_icon = "lightlain.png";
+                    break;
+                } else if (weather_description.equals("\"moderate rain\"")) {
+                    weather_icon = "moderaterain.png";
+                    break;
+                }
+            default:
+                weather_icon = "Clouds.png";
+        }
         //気温と湿度
         JsonObject main = rawJson.getAsJsonObject("main").getAsJsonObject();
         String temp_min_data = main.getAsJsonPrimitive("temp_min").toString();
         String temp_max_data = main.getAsJsonPrimitive("temp_max").toString();
         String humidity_data = main.getAsJsonPrimitive("humidity").toString();
 
+        //不快指数の計算
+        long day_uncomfortablePts = Math.round(0.81 * Double.parseDouble(temp_max_data) + 0.01 * Double.parseDouble(humidity_data) * (0.99 * Double.parseDouble(temp_max_data) - 14.3) + 46.3);
+        long night_uncomfortablePts = Math.round(0.81 * Double.parseDouble(temp_min_data) + 0.01 * Double.parseDouble(humidity_data) * (0.99 * Double.parseDouble(temp_min_data) - 14.3) + 46.3);
+
+        System.out.println(day_uncomfortablePts);
+        System.out.println(night_uncomfortablePts);
         Weather weather = new Weather();
         weather.setMax_temperature(temp_max_data);
         weather.setMin_temperature(temp_min_data);
         weather.setHumidity(humidity_data);
-        weather.setWeather_icon("weatherIconのURL");
+        weather.setWeather_icon(weather_icon);
 
         // TODO: DBから天気に合った服装を選ぶ処理
 
@@ -60,6 +104,7 @@ public class RootApi {
 
         ManClothes manClothes = new ManClothes();
         WomanClothes womanClothes = new WomanClothes();
+        Clothes clothes = new Clothes();
 
         try {
             Class.forName("org.sqlite.JDBC");
@@ -74,6 +119,10 @@ public class RootApi {
             String get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '201'";//女インナー(薄)
             String get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
             String get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '221'";//女ボトム(短)
+
+            //clothesDescription
+            String get_day_clothes_description = "select description from clothes_description_table where " + day_uncomfortablePts + " >= minUncomfortablePts and " + day_uncomfortablePts + " <= maxUncomfortablePts";
+            String get_night_clothes_description = "select description from clothes_description_table where " + night_uncomfortablePts + " >= minUncomfortablePts and " + night_uncomfortablePts + " <= maxUncomfortablePts";
 
             //最初に出てきた服を格納(テスト用)
             //漢
@@ -114,6 +163,18 @@ public class RootApi {
             womanClothes.setBottom_image(rs_clothes.getString(5));
             womanClothes.setBottom_color(rs_clothes.getString(4));
 
+            //clothes_description
+            rs_clothes = statement.executeQuery(get_day_clothes_description);
+            rs_clothes.next();
+            clothes.setDay_clothes_description(rs_clothes.getString(1));
+
+            rs_clothes = statement.executeQuery(get_night_clothes_description);
+            rs_clothes.next();
+            clothes.setNight_clothes_description(rs_clothes.getString(1));
+
+            clothes.setManClothes(manClothes);
+            clothes.setWomanClothes(womanClothes);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -134,11 +195,6 @@ public class RootApi {
                 e.printStackTrace();
             }
         }
-
-        Clothes clothes = new Clothes();
-        clothes.setMan_clothes(manClothes);
-        clothes.setWoman_clothes(womanClothes);
-        clothes.setClothes_description("Clothes_descriptionってDBから参照するの?");
 
         ResponseData responseData = new ResponseData();
         responseData.setWeather(weather);
@@ -170,11 +226,13 @@ public class RootApi {
     }
     private class Clothes{
         @Getter @Setter
-        private String clothes_description;
+        private String day_clothes_description;
         @Getter @Setter
-        private ManClothes man_clothes;
+        private String night_clothes_description;
         @Getter @Setter
-        private WomanClothes woman_clothes;
+        private ManClothes manClothes;
+        @Getter @Setter
+        private WomanClothes womanClothes;
     }
     private class ManClothes{
         @Getter @Setter
