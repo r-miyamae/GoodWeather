@@ -21,7 +21,7 @@ export default {
 <style>
 .top__weather {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
 }
 </style>
