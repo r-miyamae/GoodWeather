@@ -1,5 +1,6 @@
 <template>
-    <div class="top__cloth-image-outer">
+    <div class="top__cloth-image-outer" v-if="image != ''">
+        <!--v-ifの表示するしないの基準を決定しないといけない-->
         <img class="top__cloth-image-outer-surface" :src="'/assets/clothes/' + image">
         <div class="top__cloth-image-outer-foundation" :style="{backgroundColor: color}"></div>
     </div>

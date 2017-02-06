@@ -16,9 +16,11 @@ export default {
 
 <style>
 .top__clothes-description {
-    position: absolute;
     width: 100%;
     height: 90%;
+    position: absolute;
+    top: 10%;
+    
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -32,7 +34,7 @@ export default {
 .top__clothes-description-content {
     width: 80%;
     margin: 0 auto;
-    margin-top: 15vh;
+    margin-top: 8vh;
     position: relative;
     text-align: center;
     color: darkblue;
