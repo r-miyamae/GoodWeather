@@ -3,7 +3,7 @@
     <Header></Header>
     <Clothes :clothes="dataForTop.clothes"></Clothes>
     <Weather :weather="dataForTop.weather"></Weather>
-    <SelectLocation :location="dataForTop.user_place"></SelectLocation>
+    <SelectLocation :location="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
     <Footer></Footer>
   </div>
 </template>
@@ -59,6 +59,22 @@ export default {
 
       var self = this
       var url = '/api/v1/top'
+
+      axios.get(url)
+      .then(function (response) {
+        self.dataForTop = response.data
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    reGetDatas: function (location) {
+      // location は emit してくるメソッドから送られてくる
+      var self = this
+
+      var baseUrl = '/api/v1/top?loc='
+      var requestLocation = location + ',jp'
+
+      var url = baseUrl + requestLocation
 
       axios.get(url)
       .then(function (response) {
