@@ -284,7 +284,3 @@ public class RootApi {
         private String bottom_color;
     }
 }
-
-
-
-
