@@ -10,6 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.Optional;
 
@@ -27,9 +30,16 @@ public class RootApi {
 
     // 外部サービスの JSON を加工して返却。
     @RequestMapping("/top")
-    public ResponseData top(@RequestParam("loc") Optional<String> loc) {
-        // Userの場所
+    public ResponseData top(HttpServletRequest request,
+                            HttpServletResponse response,
+                            @RequestParam("loc") Optional<String> loc) {
         String location = "Tokyo,jp";
+        HttpSession session = request.getSession(false);
+        //ログイン中ならlocationを設定
+        if(session != null){
+            location = (String)request.getAttribute("location");
+        }
+        // Userの場所
         if(loc.isPresent()){
             location = loc.get();
         }

@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class SignUpController {
-    @RequestMapping("/user/signup")
+public class UserInfoEditController {
+    @RequestMapping("/user/edit")
     public String index() {
-        return "html/signupページ";
+        return "html/userEditページ";
     }
 }
+
+

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class SignUpController {
-    @RequestMapping("/user/signup")
+public class LogoutController {
+    @RequestMapping("/user/logout")
     public String index() {
-        return "html/signupページ";
+        return "html/logoutページ";
     }
 }

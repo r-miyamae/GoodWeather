@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/signin")
+@RequestMapping("/")
 public class SignInController {
-    @RequestMapping("/signin")
+    @RequestMapping("/user/signin")
     public String index() {
         return "html/signinページ";
     }
