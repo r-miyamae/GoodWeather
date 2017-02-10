@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
     @RequestMapping("/")
     public String index() {
-     return "redirect:/#/top";
+     return "/index.html";
     }
 }
