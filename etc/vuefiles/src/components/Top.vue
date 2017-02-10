@@ -21,6 +21,7 @@ export default {
   },
   created: function () {
     this.getDatas()
+    this.$emit('topEmit')
   },
   methods: {
     getDatas: function (event) {

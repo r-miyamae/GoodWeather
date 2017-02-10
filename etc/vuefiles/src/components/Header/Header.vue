@@ -1,8 +1,8 @@
 <template>
     <header class="header">
         <HeaderBland></HeaderBland>
-        <HambugerMenu v-on:changeToggle="changeToggle"></HambugerMenu>
-        <MenuComponent :menuToggle="menuToggle"></MenuComponent>
+        <HambugerMenu :menuActive="menuActive" v-on:changeMenu="changeMenu"></HambugerMenu>
+        <MenuComponent :menuToggle="menuToggle" v-on:resetToggle="resetToggle"></MenuComponent>
     </header>
 </template>
 
@@ -19,16 +19,23 @@ export default {
   },
   data () {
     return {
-      menuToggle: 'first data'
+      menuToggle: 'first data',
+      menuActive: false
     }
   },
   methods: {
-    changeToggle: function (toggle) {
+    changeMenu: function (toggle) {
       if (!toggle) {
-        this.menuToggle = true
-      } else {
+        this.menuActive = true
         this.menuToggle = false
+      } else {
+        this.menuActive = false
+        this.menuToggle = true
       }
+    },
+    resetToggle: function () {
+      this.menuToggle = 'first data'
+      this.menuActive = false
     }
   }
 }
