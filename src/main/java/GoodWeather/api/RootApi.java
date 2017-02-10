@@ -77,12 +77,14 @@ public class RootApi {
             case "\"Rain\"":
                 if (weather_description.equals("\"light lain\"")) {
                     weather_icon = "lightlain.png";
+                    System.out.println("lightlain");
                     break;
                 } else if (weather_description.equals("\"moderate rain\"")) {
                     weather_icon = "moderaterain.png";
                     break;
                 }
             default:
+                System.out.println("default");
                 weather_icon = "Clouds.png";
         }
         //気温と湿度
