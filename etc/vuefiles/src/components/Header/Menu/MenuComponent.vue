@@ -80,7 +80,7 @@
 .header__menu-content-signup {
   margin: 0 3%;
   padding: 10px;
-  padding-top: 5%;
+  padding-top: 3%;
   width: 50%;
   border-radius: 10px;
   text-decoration: none;
@@ -92,7 +92,7 @@
 .header__menu-content-signin {
   margin: 0 3%;  
   padding: 10px;
-  padding-top: 5%;
+  padding-top: 3%;
   width: 50%;
   border-radius: 10px;  
   text-decoration: none;
