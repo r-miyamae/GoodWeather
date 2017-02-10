@@ -9,16 +9,14 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
-public class UserInfoEditController {
-    @RequestMapping("/user/edit")
+public class UserClothesController {
+    @RequestMapping("/clothes")
     public String index(HttpServletRequest request,
                         HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if(session == null){
             return "html/loginページ";
         }
-        return "html/userEditページ";
+        return "html/userClothesページ";
     }
 }
-
-
