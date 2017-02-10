@@ -1,18 +1,35 @@
 <template>
     <header class="header">
         <HeaderBland></HeaderBland>
-        <HambugerMenu></HambugerMenu>
+        <HambugerMenu v-on:changeToggle="changeToggle"></HambugerMenu>
+        <MenuComponent :menuToggle="menuToggle"></MenuComponent>
     </header>
 </template>
 
 <script>
 import HeaderBland from './HeaderBland.vue'
 import HambugerMenu from './HambugerMenu.vue'
+import MenuComponent from './Menu/MenuComponent.vue'
 
 export default {
   components: {
     HeaderBland,
-    HambugerMenu
+    HambugerMenu,
+    MenuComponent
+  },
+  data () {
+    return {
+      menuToggle: 'first data'
+    }
+  },
+  methods: {
+    changeToggle: function (toggle) {
+      if (!toggle) {
+        this.menuToggle = true
+      } else {
+        this.menuToggle = false
+      }
+    }
   }
 }
 </script>
