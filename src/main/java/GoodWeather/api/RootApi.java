@@ -54,6 +54,7 @@ public class RootApi {
         String weather_description = weather_json.getAsJsonPrimitive("description").toString();
         String weather_icon = weather_json.getAsJsonPrimitive("icon").toString();
         System.out.println(weather_description);
+        System.out.println(weather_data);
         switch (weather_data) {
             case "\"Clear\"":
                 weather_icon = "Clear.png";
@@ -75,9 +76,9 @@ public class RootApi {
                 weather_icon = "Clouds.png";
                 break;
             case "\"Rain\"":
-                if (weather_description.equals("\"light lain\"")) {
-                    weather_icon = "lightlain.png";
-                    System.out.println("lightlain");
+                if (weather_description.equals("\"light rain\"")) {
+                    weather_icon = "lightrain.png";
+                    System.out.println("lightrain");
                     break;
                 } else if (weather_description.equals("\"moderate rain\"")) {
                     weather_icon = "moderaterain.png";
