@@ -31,7 +31,6 @@ public class RootApi {
     // 外部サービスの JSON を加工して返却。
     @RequestMapping("/top")
     public ResponseData top(HttpServletRequest request,
-                            HttpServletResponse response,
                             @RequestParam("loc") Optional<String> loc) {
         String location = "Tokyo,jp";
         HttpSession session = request.getSession(false);
