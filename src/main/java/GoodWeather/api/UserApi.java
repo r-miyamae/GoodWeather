@@ -15,7 +15,7 @@ import java.util.Optional;
 import GoodWeather.logic.userAuthenticate;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserApi {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity.BodyBuilder signup(@RequestParam("mailAddress") String mailAddress,
