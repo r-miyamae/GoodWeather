@@ -166,7 +166,7 @@ public class UserApi {
 
 
     @RequestMapping(value = "/clothes", method = RequestMethod.GET)
-    public List<UserClothes> clothesEdit(HttpServletRequest request) {
+    public String clothesEdit(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             //DBに接続
@@ -178,7 +178,7 @@ public class UserApi {
                 connection = DriverManager.getConnection("jdbc:sqlite:test.db");
                 statement = connection.createStatement();
 
-                String sql = "select * from user_clothes where mailAddress = " + session.getAttribute("mailAddress");
+                String sql = "select * from user_clothes where mailAddress = "  + session.getAttribute("mailAddress");
                 ResultSet rs_clothes = statement.executeQuery(sql);
                 List<UserClothes> clothesList = new ArrayList<>();
                 while(rs_clothes.next()){
@@ -191,7 +191,8 @@ public class UserApi {
                     clothes.setClothIcon(rs_clothes.getString(6));
                     clothesList.add(clothes);
                 }
-                return clothesList;
+                Gson gson = new Gson();
+                return gson.toJson(clothesList);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
