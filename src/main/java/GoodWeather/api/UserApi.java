@@ -178,7 +178,7 @@ public class UserApi {
                 connection = DriverManager.getConnection("jdbc:sqlite:test.db");
                 statement = connection.createStatement();
 
-                String sql = "select * from user_clothes where mailAddress = " + request.getAttribute("mailAddress");
+                String sql = "select * from user_clothes where mailAddress = " + session.getAttribute("mailAddress");
                 ResultSet rs_clothes = statement.executeQuery(sql);
                 List<UserClothes> clothesList = new ArrayList<>();
                 while(rs_clothes.next()){

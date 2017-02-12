@@ -23,7 +23,6 @@ public class RootApi {
     private final RestTemplate rt = new RestTemplate();
     // お天気APIの URL
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=";
-
     //パラメータ
     private final String parameter = "&units=metric";
     // APIキー
@@ -37,7 +36,7 @@ public class RootApi {
         HttpSession session = request.getSession(false);
         //ログイン中ならlocationを設定
         if(session != null){
-            location = (String)request.getAttribute("location");
+            location = (String)session.getAttribute("location");
         }
         // Userの場所
         if(loc.isPresent()){
@@ -54,8 +53,7 @@ public class RootApi {
         String weather_data = weather_json.getAsJsonPrimitive("main").toString();
         String weather_description = weather_json.getAsJsonPrimitive("description").toString();
         String weather_icon = weather_json.getAsJsonPrimitive("icon").toString();
-        System.out.println(weather_description);
-        System.out.println(weather_data);
+        System.out.println(rawJson + "bbbbb");
         switch (weather_data) {
             case "\"Clear\"":
                 weather_icon = "Clear.png";
@@ -99,8 +97,6 @@ public class RootApi {
         long day_uncomfortablePts = Math.round(0.81 * Double.parseDouble(temp_max_data) + 0.01 * Double.parseDouble(humidity_data) * (0.99 * Double.parseDouble(temp_max_data) - 14.3) + 46.3);
         long night_uncomfortablePts = Math.round(0.81 * Double.parseDouble(temp_min_data) + 0.01 * Double.parseDouble(humidity_data) * (0.99 * Double.parseDouble(temp_min_data) - 14.3) + 46.3);
 
-        System.out.println(day_uncomfortablePts);
-        System.out.println(night_uncomfortablePts);
         Weather weather = new Weather();
         weather.setMax_temperature(temp_max_data);
         weather.setMin_temperature(temp_min_data);
