@@ -1,31 +1,77 @@
 <template>
   <div class="signup__inputData">
-    <form action="">
+    <form onsubmit="return false;">
       <label for="email">E-Mail</label><br>
-      <input name="email" type="email" required><br>
+      <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
       <label for="password">Password</label><br>
-      <input name="password" type="password" required><br>
+      <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="Please Input Password"><br>
       <label for="location">基準地点</label><br><br>
       よく確認する地点を登録することで、TOPページに表示される天気の基準点が変更されます
-      <select class="signup__selectLocation" name="location" v-model="location" options="options">
+      <select class="signup__selectLocation" name="location" v-model="postData.location" options="options">
         <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <div class="signup__selectSex">
         <br>
         <label for="sex">性別</label><br><br>
-        MEN <input type="radio" value="MEN" name="sex" required>
-        WOMEN <input type="radio" value="WOMEN" name="sex" required>
+        MEN <input type="radio" value="MEN" name="sex" required v-model="postData.sex">
+        WOMEN <input type="radio" value="WOMEN" name="sex" required v-model="postData.sex">
       </div>
-      <button class="signup__submit" type="submit">SignUp</button>
+      <button class="signup__submit" @click="post">SignUp</button>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  methods: {
+    post: function () {
+      if (this.validation(this.postData)) {
+        // var self = this
+        var baseUrl = '/api/v1/user/signup'
+        var mail = '?mailAddress=' + encodeURIComponent(this.postData.email)
+        var password = '&password=' + this.postData.password
+        var location = '&loc=' + this.postData.location
+        var gender = '&gender=' + this.postData.sex
+
+        var url = baseUrl + mail + password + location + gender
+
+        axios.post(url)
+        .then(function (response) {
+          console.log('done')
+          if (response.status === 200) {
+            window.location = '/#/signin'
+          }
+        })
+        .catch(function (error) {
+          console.log(error.response.status)
+          if (error.response.status === 402) {
+            // 登録失敗した時の処理
+            this.postData.email = ''
+            this.postData.password = ''
+            this.postData.location = 'tokyo'
+            this.postData.sex = ''
+          }
+        })
+      }
+    },
+    validation: function (data) {
+      if (data.email !== '' && data.password !== '' && data.sex !== '') {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   data () {
     return {
-      location: 'tokyo',
+      postData: {
+        email: '',
+        password: '',
+        sex: '',
+        location: 'tokyo'
+      },
       options: [
         {value: 'hokkaido', text: '北海道'},
         {value: 'aomori', text: '青森県'},

@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <h3 class="signup__caption">Sign Up</h3>
-    <InputData></InputData>
+    <InputData v-on:signupSubmit="signupSubmit"></InputData>
   </div>
 </template>
 
