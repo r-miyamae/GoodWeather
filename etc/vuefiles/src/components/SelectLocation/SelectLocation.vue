@@ -1,5 +1,5 @@
 <template>
-    <div class="hoge">
+    <div class="top__selectLocation-wrapper">
         <select class="top__selectLocation" v-model="location" options="options">
             <option v-for="option in options" :value="option.value">{{ option.text }}</option>
         </select>
@@ -75,7 +75,7 @@ export default {
 	appearance: none;
 
     width: 100%;
-    height: 8%;
+    height: 100%;
     border: 0;
     background-color: #01288d;
     color: white;
@@ -86,8 +86,9 @@ export default {
     font-size: 30%;
 }
 
-.hoge {
+.top__selectLocation-wrapper {
     width: 100%;
+    height: 7%;
     display: -webkit-box;
     display: box;
     box-pack: center;
