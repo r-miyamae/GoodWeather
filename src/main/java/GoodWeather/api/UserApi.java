@@ -2,6 +2,8 @@ package GoodWeather.api;
 
 import GoodWeather.model.HttpStatus400Exeption;
 import GoodWeather.model.HttpStatus200;
+import GoodWeather.model.ManClothes;
+import GoodWeather.model.UserClothes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import GoodWeather.logic.userAuthenticate;
@@ -162,7 +166,7 @@ public class UserApi {
 
 
     @RequestMapping(value = "/clothes", method = RequestMethod.GET)
-    public ResponseEntity.BodyBuilder clothesEdit(HttpServletRequest request) {
+    public List<UserClothes> clothesEdit(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             //DBに接続
@@ -174,9 +178,20 @@ public class UserApi {
                 connection = DriverManager.getConnection("jdbc:sqlite:test.db");
                 statement = connection.createStatement();
 
-                String sql = "select user_clothes where mailAddress = " + request.getAttribute("mailAddress");
-                throw new HttpStatus200();
-
+                String sql = "select * from user_clothes where mailAddress = " + request.getAttribute("mailAddress");
+                ResultSet rs_clothes = statement.executeQuery(sql);
+                List<UserClothes> clothesList = new ArrayList<>();
+                while(rs_clothes.next()){
+                    UserClothes clothes = new UserClothes();
+                    clothes.setClothId(rs_clothes.getInt(1));
+                    clothes.setMailAddress(rs_clothes.getString(2));
+                    clothes.setClothGenreId(rs_clothes.getString(3));
+                    clothes.setClothName(rs_clothes.getString(4));
+                    clothes.setClothColor(rs_clothes.getString(5));
+                    clothes.setClothIcon(rs_clothes.getString(6));
+                    clothesList.add(clothes);
+                }
+                return clothesList;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
