@@ -11,10 +11,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
 import java.util.Optional;
+
+import GoodWeather.model.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -269,43 +270,5 @@ public class RootApi {
         private String min_temperature;
         @Getter @Setter
         private String humidity;
-    }
-    private class Clothes{
-        @Getter @Setter
-        private String day_clothes_description;
-        @Getter @Setter
-        private String night_clothes_description;
-        @Getter @Setter
-        private ManClothes man_clothes;
-        @Getter @Setter
-        private WomanClothes woman_clothes;
-    }
-    private class ManClothes{
-        @Getter @Setter
-        private String inner_image;
-        @Getter @Setter
-        private String inner_color;
-        @Getter @Setter
-        private String outer_image;
-        @Getter @Setter
-        private String outer_color;
-        @Getter @Setter
-        private String bottom_image;
-        @Getter @Setter
-        private String bottom_color;
-    }
-    private class WomanClothes{
-        @Getter @Setter
-        private String inner_image;
-        @Getter @Setter
-        private String inner_color;
-        @Getter @Setter
-        private String outer_image;
-        @Getter @Setter
-        private String outer_color;
-        @Getter @Setter
-        private String bottom_image;
-        @Getter @Setter
-        private String bottom_color;
     }
 }

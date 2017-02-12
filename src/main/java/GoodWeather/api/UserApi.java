@@ -1,5 +1,7 @@
 package GoodWeather.api;
 
+import GoodWeather.model.HttpStatus400Exeption;
+import GoodWeather.model.HttpStatus200;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +42,7 @@ public class UserApi {
             ps.setString(4, gender);
             ps.executeUpdate();
 
-            return ResponseEntity.status(200);
+            throw new HttpStatus200();
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -61,15 +63,8 @@ public class UserApi {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            try{
-                if (ps != null) {
-                    ps.close();
-                }
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
         }
-            return ResponseEntity.status(402);
+        throw new HttpStatus400Exeption();
     }
 
     //login処理
@@ -85,9 +80,9 @@ public class UserApi {
                 //sessionにmailAddressとlocation追加
                 session.setAttribute("mailAddress",mailAddress);
                 session.setAttribute("location", result);
-                return ResponseEntity.status(200);
+                throw new HttpStatus200();
             }
-        return ResponseEntity.status(402);
+        throw new HttpStatus400Exeption();
     }
 
 
@@ -126,7 +121,7 @@ public class UserApi {
                         ps.setString(2, (String)session.getAttribute("mailAddress"));
                         ps.executeUpdate();
                     }
-                    return ResponseEntity.status(200);
+                    throw new HttpStatus200();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {
@@ -149,7 +144,7 @@ public class UserApi {
                 }
              }
         }
-        return ResponseEntity.status(402);
+        throw new HttpStatus400Exeption();
     }
 
 
@@ -158,10 +153,59 @@ public class UserApi {
         HttpSession session = request.getSession(false);
             if(session != null){
                 session.invalidate();
-                return ResponseEntity.status(200);
+                throw new HttpStatus200();
             }
-            return ResponseEntity.status(402);
+        throw new HttpStatus400Exeption();
     }
+
+
+    @RequestMapping(value = "/clothes", method = RequestMethod.GET)
+    public ResponseEntity.BodyBuilder clothesEdit(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            //DBに接続
+            Connection connection = null;
+            Statement statement = null;
+            PreparedStatement ps = null;
+            try {
+                Class.forName("org.sqlite.JDBC");
+                connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+                statement = connection.createStatement();
+
+                String sql = "select user_clothes where mailAddress = " + request.getAttribute("mailAddress");
+                throw new HttpStatus200();
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (statement != null) {
+                        statement.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        throw new HttpStatus400Exeption();
+    }
+
 
     @RequestMapping(value = "/clothes", method = RequestMethod.POST, produces="application/json; charset=UTF-8")
     public ResponseEntity.BodyBuilder clothes(HttpServletRequest request,
@@ -205,7 +249,7 @@ public class UserApi {
                 ps.setString(4, clothColor);
                 ps.setString(5, clothIcon);
                 ps.executeUpdate();
-                return ResponseEntity.status(200);
+                throw new HttpStatus200();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -227,6 +271,6 @@ public class UserApi {
                 }
             }
         }
-        return ResponseEntity.status(402);
+        throw new HttpStatus400Exeption();
     }
 }
