@@ -46,12 +46,13 @@ export default {
         })
         .catch(function (error) {
           console.log(error.response.status)
-          if (error.response.status === 402) {
+          if (error.response.status === 400) {
             // 登録失敗した時の処理
             this.postData.email = ''
             this.postData.password = ''
             this.postData.location = 'tokyo'
             this.postData.sex = ''
+            // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
           }
         })
       }
