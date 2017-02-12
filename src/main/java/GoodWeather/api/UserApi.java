@@ -48,6 +48,7 @@ public class UserApi {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new HttpStatus400Exeption();
         } finally {
             try {
                 if (statement != null) {
@@ -126,6 +127,7 @@ public class UserApi {
                     e.printStackTrace();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    throw new HttpStatus400Exeption();
                 } finally {
                     try {
                         if (statement != null) {
@@ -179,6 +181,7 @@ public class UserApi {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
+                throw new HttpStatus400Exeption();
             } finally {
                 try {
                     if (statement != null) {
@@ -254,6 +257,7 @@ public class UserApi {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
+                throw new HttpStatus400Exeption();
             } finally {
                 try {
                     if (statement != null) {
