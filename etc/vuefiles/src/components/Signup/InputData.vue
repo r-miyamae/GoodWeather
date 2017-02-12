@@ -28,7 +28,7 @@ export default {
   methods: {
     post: function () {
       if (this.validation(this.postData)) {
-        // var self = this
+        var self = this
         var baseUrl = '/api/v1/user/signup'
         var mail = '?mailAddress=' + encodeURIComponent(this.postData.email)
         var password = '&password=' + this.postData.password
@@ -48,10 +48,10 @@ export default {
           console.log(error.response.status)
           if (error.response.status === 400) {
             // 登録失敗した時の処理
-            this.postData.email = ''
-            this.postData.password = ''
-            this.postData.location = 'tokyo'
-            this.postData.sex = ''
+            self.postData.email = ''
+            self.postData.password = ''
+            self.postData.location = 'tokyo'
+            self.postData.sex = ''
             // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
           }
         })
