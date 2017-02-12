@@ -128,51 +128,53 @@ public class RootApi {
             String get_woman_outer = "";
             String get_woman_bottom = "";
             if(day_uncomfortablePts <= 54) {//冬服
-                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '102'";//漢インナー(厚)
-                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '112'";//漢アウター(厚)
-                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122'";//漢ボトム(長)
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '102' ORDER BY RANDOM()";//漢インナー(厚)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '112' ORDER BY RANDOM()";//漢アウター(厚)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122' ORDER BY RANDOM()";//漢ボトム(長)
 
-                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '202'";//女インナー(厚)
-                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '212'";//女アウター(厚)
-                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222'";//女ボトム(長)
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '202' ORDER BY RANDOM()";//女インナー(厚)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '212' ORDER BY RANDOM()";//女アウター(厚)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222' ORDER BY RANDOM()";//女ボトム(長)
             }else if(day_uncomfortablePts >= 75){//夏服
-                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '101'";//漢インナー(薄)
-                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111'";//漢アウター(薄)
-                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '12_'";//漢ボトム(短)or(長)
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '101' ORDER BY RANDOM()";//漢インナー(薄)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111' ORDER BY RANDOM()";//漢アウター(薄)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '12_' ORDER BY RANDOM()";//漢ボトム(短)or(長)
 
-                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '201'";//女インナー(薄)
-                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
-                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '22_'";//女ボトム(短)or(長)
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '201' ORDER BY RANDOM()";//女インナー(薄)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211' ORDER BY RANDOM()";//女アウター(薄)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '22_' ORDER BY RANDOM()";//女ボトム(短)or(長)
             }else{//春、秋服
-                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '10_'";//漢インナー(薄)or(厚)
-                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111'";//漢アウター(薄)
-                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122'";//漢ボトム(長)
+                get_man_inner = "select * from sample_clothes where clothGenreId LIKE '10_' ORDER BY RANDOM()";//漢インナー(薄)or(厚)
+                get_man_outer = "select * from sample_clothes where clothGenreId LIKE '111' ORDER BY RANDOM()";//漢アウター(薄)
+                get_man_bottom = "select * from sample_clothes where clothGenreId LIKE '122' ORDER BY RANDOM()";//漢ボトム(長)
 
-                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '20_'";//女インナー(薄)or(厚)
-                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211'";//女アウター(薄)
-                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222'";//女ボトム(長)
+                get_woman_inner = "select * from sample_clothes where clothGenreId LIKE '20_' ORDER BY RANDOM()";//女インナー(薄)or(厚)
+                get_woman_outer = "select * from sample_clothes where clothGenreId LIKE '211' ORDER BY RANDOM()";//女アウター(薄)
+                get_woman_bottom = "select * from sample_clothes where clothGenreId LIKE '222' ORDER BY RANDOM()";//女ボトム(長)
             }
 
             //clothesDescription
             String get_day_clothes_description = "select description from clothes_description_table where " + day_uncomfortablePts + " >= minUncomfortablePts and " + day_uncomfortablePts + " <= maxUncomfortablePts";
             String get_night_clothes_description = "select description from clothes_description_table where " + night_uncomfortablePts + " >= minUncomfortablePts and " + night_uncomfortablePts + " <= maxUncomfortablePts";
 
+            String get_recommend_color = "select * from Color_table ORDER BY RANDOM()";
+
             //最初に出てきた服を格納(テスト用)
             //漢
             ResultSet rs_clothes = statement.executeQuery(get_man_inner);
             rs_clothes.next();//.next:値が無いとfalseを返すのでwhileで全部出すことも可能
             manClothes.setInner_image(rs_clothes.getString(5));//(5):clothIcon
-            manClothes.setInner_color(rs_clothes.getString(4));//(4):clothColor
+//            manClothes.setInner_color(rs_clothes.getString(4));//(4):clothColor
 
             rs_clothes = statement.executeQuery(get_man_outer);
             rs_clothes.next();
             manClothes.setOuter_image(rs_clothes.getString(5));
-            manClothes.setOuter_color(rs_clothes.getString(4));
+//            manClothes.setOuter_color(rs_clothes.getString(4));
 
             rs_clothes = statement.executeQuery(get_man_bottom);
             rs_clothes.next();
             manClothes.setBottom_image(rs_clothes.getString(5));
-            manClothes.setBottom_color(rs_clothes.getString(4));
+//            manClothes.setBottom_color(rs_clothes.getString(4));
 
 //            rs_man.getString(1)//clothId
 //            rs_man.getString(2)//clothGenreId
@@ -184,16 +186,27 @@ public class RootApi {
             rs_clothes = statement.executeQuery(get_woman_inner);
             rs_clothes.next();
             womanClothes.setInner_image(rs_clothes.getString(5));//(5):clothIcon
-            womanClothes.setInner_color(rs_clothes.getString(4));//(4):clothColor
+//            womanClothes.setInner_color(rs_clothes.getString(4));//(4):clothColor
 
             rs_clothes = statement.executeQuery(get_woman_outer);
             rs_clothes.next();
             womanClothes.setOuter_image(rs_clothes.getString(5));
-            womanClothes.setOuter_color(rs_clothes.getString(4));
+//            womanClothes.setOuter_color(rs_clothes.getString(4));
 
             rs_clothes = statement.executeQuery(get_woman_bottom);
             rs_clothes.next();
             womanClothes.setBottom_image(rs_clothes.getString(5));
+//            womanClothes.setBottom_color(rs_clothes.getString(4));
+
+            rs_clothes = statement.executeQuery(get_recommend_color);
+            rs_clothes.next();
+            manClothes.setInner_color(rs_clothes.getString(2));
+            manClothes.setOuter_color(rs_clothes.getString(3));
+            manClothes.setBottom_color(rs_clothes.getString(4));
+
+            rs_clothes.next();
+            womanClothes.setInner_color(rs_clothes.getString(2));
+            womanClothes.setOuter_color(rs_clothes.getString(3));
             womanClothes.setBottom_color(rs_clothes.getString(4));
 
             //clothes_description

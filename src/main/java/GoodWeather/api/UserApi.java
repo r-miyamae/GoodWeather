@@ -20,6 +20,7 @@ public class UserApi {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity.BodyBuilder signup(@RequestParam("mailAddress") String mailAddress,
                                  @RequestParam("password") String password,
+                                 @RequestParam("gender") String gender,
                                  @RequestParam("loc") String location){
         //DBに接続
         Connection connection = null;
@@ -30,12 +31,13 @@ public class UserApi {
             connection = DriverManager.getConnection("jdbc:sqlite:test.db");
             statement = connection.createStatement();
 
-            String sql = "INSERT INTO users_table values(?, ?, ?)";
+            String sql = "INSERT INTO users_table values(?, ?, ?, ?)";
             //DBユーザデータつっこむ
             ps = connection.prepareStatement(sql);
             ps.setString(1, mailAddress);
             ps.setString(2, password);
             ps.setString(3, location);
+            ps.setString(4, gender);
             ps.executeUpdate();
 
             return ResponseEntity.status(200);
