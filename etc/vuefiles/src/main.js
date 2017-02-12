@@ -9,13 +9,15 @@ Vue.use(VueRouter)
 import Top from './components/Top.vue'
 import SignUp from './components/Signup/Signup.vue'
 import SignIn from './components/Signin/Signin.vue'
+import UserClothesList from './components/UserClothes/UserClothesList.vue'
 
 const router = new VueRouter({
   routes: [
     {path: '/', component: Top},
     {path: '/top', component: Top},
     {path: '/signup', component: SignUp},
-    {path: '/signin', component: SignIn}
+    {path: '/signin', component: SignIn},
+    {path: '/clothes', component: UserClothesList}
   ]
 })
 
