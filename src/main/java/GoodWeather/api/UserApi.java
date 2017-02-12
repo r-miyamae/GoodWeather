@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,8 +178,8 @@ public class UserApi {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection("jdbc:sqlite:test.db");
                 statement = connection.createStatement();
-
-                String sql = "select * from user_clothes where mailAddress = "  + session.getAttribute("mailAddress");
+                String mailAddress = session.getAttribute("mailAddress").toString();
+                String sql = "select * from user_clothes where mailAddress = \'" + session.getAttribute("mailAddress") +"\'";
                 ResultSet rs_clothes = statement.executeQuery(sql);
                 List<UserClothes> clothesList = new ArrayList<>();
                 while(rs_clothes.next()){
