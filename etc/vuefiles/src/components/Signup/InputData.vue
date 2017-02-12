@@ -32,7 +32,7 @@ export default {
         var baseUrl = '/api/v1/user/signup'
         var mail = '?mailAddress=' + encodeURIComponent(this.postData.email)
         var password = '&password=' + this.postData.password
-        var location = '&loc=' + this.postData.location
+        var location = '&loc=' + this.postData.location + ',jp'
         var gender = '&gender=' + this.postData.sex
 
         var url = baseUrl + mail + password + location + gender
