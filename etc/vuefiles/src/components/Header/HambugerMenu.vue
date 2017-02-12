@@ -1,6 +1,6 @@
 <template>
-	<div class="header__menu">
-		<a class="menu-trigger"> <!--アニメーションさせるためにこいつに active classを付与する-->
+	<div class="header__menu-button">
+		<a class="menu-trigger" :class="{ active: menuActive }" @click="menuToggle"> <!--アニメーションさせるためにこいつに active classを付与する-->
 			<span></span>
 			<span></span>
 			<span></span>
@@ -8,12 +8,28 @@
 	</div>
 </template>
 
+<script>
+export default {
+  props: ['menuActive'],
+  methods: {
+    menuToggle: function () {
+      if (this.menuActive) {
+        this.$emit('changeMenu', true)
+      } else {
+        this.$emit('changeMenu', false)
+      }
+    }
+  }
+}
+</script>
+
 <style>
-.header__menu {
+.header__menu-button {
 	margin: 0;
 	padding: 0;
 	width: 10%;
 	height: 100%;
+	z-index: 1000;
 }
 
 .menu-trigger,
@@ -34,7 +50,7 @@
 	left: 0;
 	width: 100%;
 	height: 20%;
-	background-color: #ffffff;
+	background-color: white;
 	border-radius: 4px;
 }
 .menu-trigger span:nth-of-type(1) {
