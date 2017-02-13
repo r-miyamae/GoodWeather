@@ -2,7 +2,7 @@
   <div class="top">
     <Clothes :clothes="dataForTop.clothes"></Clothes>
     <Weather :weather="dataForTop.weather"></Weather>
-    <SelectLocation :location="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
+    <SelectLocation :reciveLocation="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
   </div>
 </template>
 
@@ -60,6 +60,9 @@ export default {
       axios.get(url)
       .then(function (response) {
         self.dataForTop = response.data
+        self.dataForTop.user_place = self.dataForTop.user_place.slice(0, -3)
+        console.log(self.dataForTop.user_place) // nagano
+        console.log(self.dataForTop.weather)
       }).catch(function (error) {
         console.log(error)
       })
