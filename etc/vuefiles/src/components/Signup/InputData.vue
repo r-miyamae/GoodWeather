@@ -39,7 +39,6 @@ export default {
 
         axios.post(url)
         .then(function (response) {
-          console.log('done')
           if (response.status === 200) {
             window.location = '/#/signin'
           }

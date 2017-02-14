@@ -78,7 +78,7 @@ export default {
 
 <style>
 .top__selectLocation {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 
@@ -96,7 +96,7 @@ export default {
 
 .top__selectLocation-wrapper {
     width: 100%;
-    height: 7%;
+    height: 10%;
     display: -webkit-box;
     display: box;
     box-pack: center;
