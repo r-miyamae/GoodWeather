@@ -10,6 +10,9 @@
         <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothes</router-link>
         <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothRegist</router-link>
       </ul>
+      <div class="header__menu-content-logout">
+        <button class="header__menu-content-logout-button" type="button" @click="signOut">Sign Out</button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +33,21 @@
       menuForSignIn: function () {
         this.loginCheck()
         this.resetToggle()
+      },
+      signOut: function () {
+        var url = '/api/v1/user/logout'
+        var self = this
+
+        axios.post(url)
+        .then(function (response) {
+          self.resetToggle()
+          window.location = '/#/'
+          window.location.reload()
+        })
+        .catch(function (error) {
+          self.resetToggle()
+          console.log(error)
+        })
       },
       resetToggle: function () {
         this.$emit('resetToggle')
@@ -131,5 +149,21 @@
   list-style: none;
   padding: 5% 0;
   border-bottom: 3px solid #222222;
+}
+
+.header__menu-content-logout {
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  width: 50%;
+}
+
+.header__menu-content-logout-button {
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #444444;
+  font-size: 1em;
+  padding: 3% 5%;
 }
 </style>

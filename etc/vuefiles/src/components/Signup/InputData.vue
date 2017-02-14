@@ -48,7 +48,6 @@ export default {
           console.log(error.response.status)
           if (error.response.status === 400) {
             // 登録失敗した時の処理
-            self.postData.email = ''
             self.postData.password = ''
             self.postData.location = 'tokyo'
             self.postData.sex = ''

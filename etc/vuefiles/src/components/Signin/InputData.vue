@@ -36,9 +36,8 @@ export default {
         })
         .catch(function (error) {
           console.log(error.response.status)
-          if (error.response.status === 404) {
+          if (error.response.status === 400) {
             // 登録失敗した時の処理
-            self.postData.email = ''
             self.postData.password = ''
             // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
             self.isError = true
