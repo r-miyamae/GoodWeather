@@ -97,14 +97,16 @@ public class UserApi {
                                              @RequestParam("mailAddress") String mailAddress,
                                              @RequestParam("password") String password){
         String encordedPassword = passwordEncode.encrypt(password);
-        String result = userAuthenticate.Authenticate(mailAddress,encordedPassword);
-            if (result != "error"){
+        List <String> result = userAuthenticate.Authenticate(mailAddress,encordedPassword);
+            if (result != null){
                 System.out.println(result);
                 //sessionの開始
                 HttpSession session = request.getSession(true);
                 //sessionにmailAddressとlocation追加
                 session.setAttribute("mailAddress",mailAddress);
-                session.setAttribute("location", result);
+                session.setAttribute("location", result.get(0));
+                session.setAttribute("gender", result.get(1));
+
                 throw new HttpStatus200();
             }
         throw new HttpStatus400Exeption();
@@ -118,8 +120,8 @@ public class UserApi {
                                            @RequestParam("loc") Optional<String> loc){
         HttpSession session = request.getSession(false);
         if(session != null){
-            String result = userAuthenticate.Authenticate((String)session.getAttribute("mailAddress"),oldPassword.get());
-            if (result != "error"){
+            List <String> result = userAuthenticate.Authenticate((String)session.getAttribute("mailAddress"),oldPassword.get());
+            if (result == null){
                 Connection connection = null;
                 Statement statement = null;
                 PreparedStatement ps;

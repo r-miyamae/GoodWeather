@@ -295,6 +295,7 @@ public class RootApi {
         responseData.setWeather(weather);
         responseData.setClothes(clothes);
         responseData.setUser_place(location);
+        responseData.setUser_gender(session.getAttribute("gender").toString());
         System.out.println(responseData.toString());
         return responseData;//springが勝手にJSONにしてくれるらしい
     }
@@ -307,6 +308,8 @@ public class RootApi {
         private Clothes clothes;
         @Getter @Setter
         private String user_place;
+        @Getter @Setter
+        private String user_gender;
     }
     private class Weather{
         @Getter @Setter
