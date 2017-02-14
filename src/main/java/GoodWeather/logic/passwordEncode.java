@@ -19,8 +19,8 @@ public class passwordEncode {
      * @param text 暗号化する文字列
      * @return 暗号化文字列
      */
-    public static final String ENCRYPT_KEY = "megane";
-    public static final String ENCRYPT_IV = "mediafrontia";
+    public static final String ENCRYPT_KEY = "1234567890123456";
+    public static final String ENCRYPT_IV = "abcdefghijklmnop";
     public static String encrypt(String text) {
 
         // 変数初期化

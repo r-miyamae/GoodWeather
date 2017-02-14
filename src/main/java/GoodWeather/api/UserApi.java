@@ -42,7 +42,8 @@ public class UserApi {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:test.db");
             statement = connection.createStatement();
-
+            System.out.println(password);
+            System.out.println(encodedPassword);
             String sql = "INSERT INTO users_table values(?, ?, ?, ?)";
             //DBユーザデータつっこむ
             ps = connection.prepareStatement(sql);
@@ -77,6 +78,18 @@ public class UserApi {
         }
         throw new HttpStatus400Exeption();
     }
+
+
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    public ResponseEntity.BodyBuilder isUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            throw new  HttpStatus200();
+        }else{
+            throw new HttpStatus400Exeption();
+        }
+    }
+
 
     //login処理
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
