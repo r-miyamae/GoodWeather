@@ -313,4 +313,57 @@ public class UserApi {
         }
         throw new HttpStatus400Exeption();
     }
+
+
+    @RequestMapping(value = "/clothes", method = RequestMethod.DELETE)
+    public ResponseEntity.BodyBuilder delete(HttpServletRequest request,
+                                             @RequestParam("id") String id){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            //DBに接続
+            Connection connection = null;
+            Statement statement = null;
+            PreparedStatement ps = null;
+            try {
+                Class.forName("org.sqlite.JDBC");
+                connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+                statement = connection.createStatement();
+
+                String sql = "select * from user_clothes where clothId = \'" + id +"\'";
+                ResultSet rs_user_clothes = statement.executeQuery(sql);
+                rs_user_clothes.next();
+                rs_user_clothes.deleteRow();
+                connection.commit();
+                throw new HttpStatus200();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new HttpStatus400Exeption();
+            } finally {
+                try {
+                    if (statement != null) {
+                        statement.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        throw new HttpStatus400Exeption();
+    }
 }
