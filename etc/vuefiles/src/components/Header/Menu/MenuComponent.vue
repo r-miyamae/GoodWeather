@@ -2,14 +2,14 @@
   <div class="header__menu" :class="{ open: !menuToggle , close: menuToggle }">
     <div class="header__menu-content">
       <div class="header__menu-content-buttons">
-        <router-link to="/signup" class="header__menu-content-signup" v-on:click.native="resetToggle">Sign up</router-link>
-        <router-link to="/signin" class="header__menu-content-signin" v-on:click.native="resetToggle">Sign in</router-link>
+        <router-link to="/signup" class="header__menu-content-signup" v-on:click.native="menuForNonSignIn">Sign up</router-link>
+        <router-link to="/signin" class="header__menu-content-signin" v-on:click.native="menuForNonSignIn">Sign in</router-link>
       </div>
       <ul class="header__menu-content-linkList">
-        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle">Top</router-link>
-        <router-link to="/#top__weather" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle">Weather</router-link>
-        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle" >UserClothes</router-link>
-        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle" >UserClothRegist</router-link>
+        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Top</router-link>
+        <router-link to="/#top__weather" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Weather</router-link>
+        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothes</router-link>
+        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothRegist</router-link>
       </ul>
     </div>
   </div>
@@ -17,6 +17,7 @@
 
 <script>
   import Signup from '../../Signup/Signup.vue'
+  import axios from 'axios'
 
   export default {
     components: {
@@ -24,11 +25,26 @@
     },
     props: ['menuToggle'],
     methods: {
+      menuForNonSignIn: function () {
+        this.resetToggle()
+      },
+      menuForSignIn: function () {
+        this.loginCheck()
+        this.resetToggle()
+      },
       resetToggle: function () {
         this.$emit('resetToggle')
       },
       loginCheck: function () {
-        // ユーザがログインしてるか確認を行うAPIに処理を投げる v-on:click.native="loginCheck"
+        var url = '/api/v1/user/signin'
+
+        axios.get(url)
+        .then(function (response) {
+        })
+        .catch(function (error) {
+          console.log(error)
+          window.location = '/#/signin'
+        })
       }
     }
   }

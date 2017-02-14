@@ -18,6 +18,17 @@ import { Compact } from 'vue-color'
 import axios from 'axios'
 
 export default {
+  created: function () {
+    var url = '/api/v1/user/signin'
+
+    axios.get(url)
+    .then(function (response) {
+    })
+    .catch(function (error) {
+      console.log(error)
+      window.location = '/#/signin'
+    })
+  },
   data () {
     return {
       name: '',

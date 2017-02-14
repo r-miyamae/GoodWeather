@@ -15,8 +15,18 @@ import axios from 'axios'
 
 export default {
   created: function () {
+    var url = '/api/v1/user/signin'
+
+    axios.get(url)
+    .then(function (response) {
+    })
+    .catch(function (error) {
+      console.log(error)
+      window.location = '/#/signin'
+    })
+
     var self = this
-    var url = '/api/v1/user/clothes'
+    url = '/api/v1/user/clothes'
 
     axios.get(url)
     .then(function (response) {
