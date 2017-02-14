@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import GoodWeather.logic.userAuthenticate;
+import GoodWeather.logic.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -33,6 +33,11 @@ public class UserApi {
         Connection connection = null;
         Statement statement = null;
         PreparedStatement ps = null;
+
+        // パスワードを暗号化する
+        String encodedPassword = passwordEncode.encrypt(password);
+
+//        StandardPasswordEncoder encoder = new StandardPasswordEncoder()
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -42,7 +47,7 @@ public class UserApi {
             //DBユーザデータつっこむ
             ps = connection.prepareStatement(sql);
             ps.setString(1, mailAddress);
-            ps.setString(2, password);
+            ps.setString(2, encodedPassword);
             ps.setString(3, location);
             ps.setString(4, gender);
             ps.executeUpdate();
@@ -78,7 +83,8 @@ public class UserApi {
     public ResponseEntity.BodyBuilder signin(HttpServletRequest request,
                                              @RequestParam("mailAddress") String mailAddress,
                                              @RequestParam("password") String password){
-        String result = userAuthenticate.Authenticate(mailAddress,password);
+        String encordedPassword = passwordEncode.encrypt(password);
+        String result = userAuthenticate.Authenticate(mailAddress,encordedPassword);
             if (result != "error"){
                 System.out.println(result);
                 //sessionの開始
