@@ -1,5 +1,5 @@
 <template>
-    <div class="hoge">
+    <div class="top__selectLocation-wrapper">
         <select class="top__selectLocation" v-model="location" options="options">
             <option v-for="option in options" :value="option.value">{{ option.text }}</option>
         </select>
@@ -8,51 +8,59 @@
 
 <script>
 export default {
+  props: ['reciveLocation'],
+  mounted: function () {
+    console.log(this.reciveLocation) // おそらく JS 読み込み順番の問題でここに親からpropsとしてデータが入ってこやん。直さないかん。
+    if (this.location !== this.reciveLocation && this.reciveLocation !== undefined && this.reciveLocation !== '') {
+      this.location = this.reciveLocation
+    }
+  },
   updated: function () {
+    console.log(this.location)
     this.$emit('reloadLocation', this.location) // v-on を使ってこのコンポーネントを参照している関数に this.location を渡す
   },
   data () {
     return {
       location: 'tokyo',
       options: [
-        {value: 'Sapporo', text: '北海道'},
+        {value: 'sapporo', text: '北海道'},
         {value: 'aomori', text: '青森県'},
-        {value: 'Morioka', text: '岩手県'},
+        {value: 'morioka', text: '岩手県'},
         {value: 'Sendai', text: '宮城県'},
         {value: 'akita', text: '秋田県'},
         {value: 'yamagata', text: '山形県'},
         {value: 'fukushima', text: '福島県'},
-        {value: 'Mito', text: '茨城県'},
-        {value: 'Utsunomiya', text: '栃木県'},
-        {value: 'Maebashi', text: '群馬県'},
+        {value: 'mito', text: '茨城県'},
+        {value: 'utsunomiya', text: '栃木県'},
+        {value: 'maebashi', text: '群馬県'},
         {value: 'saitama', text: '埼玉県'},
         {value: 'chiba', text: '千葉県'},
         {value: 'tokyo', text: '東京都'},
-        {value: 'Yokohama', text: '神奈川県'},
+        {value: 'yokohama', text: '神奈川県'},
         {value: 'niigata', text: '新潟県'},
         {value: 'toyama', text: '富山県'},
-        {value: 'Kanazawa', text: '石川県'},
+        {value: 'kanazawa', text: '石川県'},
         {value: 'fukui', text: '福井県'},
         {value: 'yamanashi', text: '山梨県'},
         {value: 'nagano', text: '長野県'},
         {value: 'gifu', text: '岐阜県'},
         {value: 'shizuoka', text: '静岡県'},
-        {value: 'Nagoya', text: '愛知県'},
-        {value: 'Tsu', text: '三重県'},
-        {value: 'Otsu', text: '滋賀県'},
+        {value: 'nagoya', text: '愛知県'},
+        {value: 'tsu', text: '三重県'},
+        {value: 'otsu', text: '滋賀県'},
         {value: 'kyoto', text: '京都府'},
         {value: 'osaka', text: '大阪府'},
         {value: 'Kobe', text: '兵庫県'},
         {value: 'nara', text: '奈良県'},
         {value: 'wakayama', text: '和歌山県'},
         {value: 'tottori', text: '鳥取県'},
-        {value: 'Matsue', text: '島根県'},
+        {value: 'matsue', text: '島根県'},
         {value: 'okayama', text: '岡山県'},
         {value: 'hiroshima', text: '広島県'},
         {value: 'yamaguchi', text: '山口県'},
         {value: 'tokushima', text: '徳島県'},
-        {value: 'Takamatsu', text: '香川県'},
-        {value: 'Matsuyama', text: '愛媛県'},
+        {value: 'takamatsu', text: '香川県'},
+        {value: 'matsuyama', text: '愛媛県'},
         {value: 'kochi', text: '高知県'},
         {value: 'fukuoka', text: '福岡県'},
         {value: 'saga', text: '佐賀県'},
@@ -61,7 +69,7 @@ export default {
         {value: 'oita', text: '大分県'},
         {value: 'miyazaki', text: '宮崎県'},
         {value: 'kagoshima', text: '鹿児島県'},
-        {value: 'Naha', text: '沖縄県'}
+        {value: 'naha', text: '沖縄県'}
       ]
     }
   }
@@ -75,7 +83,7 @@ export default {
 	appearance: none;
 
     width: 100%;
-    height: 8%;
+    height: 100%;
     border: 0;
     background-color: #01288d;
     color: white;
@@ -86,8 +94,9 @@ export default {
     font-size: 30%;
 }
 
-.hoge {
+.top__selectLocation-wrapper {
     width: 100%;
+    height: 7%;
     display: -webkit-box;
     display: box;
     box-pack: center;

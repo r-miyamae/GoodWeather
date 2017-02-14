@@ -76,7 +76,7 @@ export default {
 
 <style>
 .top__clothes {
-    height: 70%;
+    height: 73%;
     position: relative;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
