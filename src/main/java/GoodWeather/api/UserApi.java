@@ -252,17 +252,16 @@ public class UserApi {
         HttpSession session = request.getSession(false);
 //        HttpSession session = request.getSession(true);
 //        session.setAttribute("mailAddress","aaa@a.jp");
-
+        System.out.println(json);
         if(session != null){
             Gson gson = new Gson();
             String decodedResult = URLDecoder.decode(json, "UTF-8");
-            decodedResult = decodedResult.substring(0,decodedResult.length()-1);
             JsonObject userClothes = gson.fromJson(decodedResult,JsonObject.class);
             String clothName = "";
-            String clothColor = userClothes.getAsJsonPrimitive("color").toString();
-            String clothGenre = userClothes.getAsJsonPrimitive("genre").toString();
-            String clothIcon = userClothes.getAsJsonPrimitive("icon").toString();
-
+            String clothColor = userClothes.getAsJsonPrimitive("color").toString().replace("\"","");
+            String clothGenre = userClothes.getAsJsonPrimitive("genre").toString().replace("\"","");
+            String clothIcon = userClothes.getAsJsonPrimitive("icon").toString().replace("\"","");
+            System.out.println(clothIcon);
             Connection connection = null;
             Statement statement = null;
             PreparedStatement ps;
