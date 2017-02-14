@@ -1,18 +1,19 @@
 <template>
   <div class="signup__inputData">
+    <div v-if="isError" class="signup__inputData-error">登録に失敗しました</div>
     <form onsubmit="return false;">
       <label for="email">E-Mail</label><br>
       <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
       <label for="password">Password</label><br>
       <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="Please Input Password"><br>
-      <label for="location">基準地点</label><br><br>
+      <label for="location">Your Location</label><br><br>
       よく確認する地点を登録することで、TOPページに表示される天気の基準点が変更されます
       <select class="signup__selectLocation" name="location" v-model="postData.location" options="options">
         <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <div class="signup__selectSex">
         <br>
-        <label for="sex">性別</label><br><br>
+        <label for="sex">Gender</label><br><br>
         MEN <input type="radio" value="MEN" name="sex" required v-model="postData.sex">
         WOMEN <input type="radio" value="WOMEN" name="sex" required v-model="postData.sex">
       </div>
@@ -52,6 +53,7 @@ export default {
             self.postData.location = 'tokyo'
             self.postData.sex = ''
             // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
+            self.isError = true
           }
         })
       }
@@ -66,6 +68,7 @@ export default {
   },
   data () {
     return {
+      isError: false,
       postData: {
         email: '',
         password: '',
@@ -180,5 +183,15 @@ export default {
   width: 1em;
   height: 1em;
   margin: 2% 5%;
+}
+
+.signup__inputData-error {
+  background-color: indianred;
+  width: 90%;
+  text-align: center;
+  padding: 5% 2%;
+  margin: 2% auto; 
+  border-radius: 10px;
+  color: #ffffff;
 }
 </style>

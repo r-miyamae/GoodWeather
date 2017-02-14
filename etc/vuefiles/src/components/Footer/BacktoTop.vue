@@ -1,6 +1,6 @@
 <template>
     <div class="top__footer-backtotop" @click="backToTop">
-      Page Top に戻る
+      Return to Page Top
     </div>
 </template>
 

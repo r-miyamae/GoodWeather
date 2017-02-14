@@ -1,11 +1,14 @@
 <template>
   <div class="signin__inputData">
+    <div class="signin__inputData-info">Please Sign in</div>
+    <div v-if="isError" class="signin__inputData-error">Failed to Sign in</div>
     <form onsubmit="return false;">
       <label for="email">E-Mail</label><br>
       <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
       <label for="password">Password</label><br>
       <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="Please Input Password"><br>
       <button class="signin__submit" type="button" @click="post">Sign In</button>
+      <router-link class="signin__to-signup-link" to="/signup">Go to Sign up Page</router-link>
     </form>
   </div>
 </template>
@@ -33,11 +36,12 @@ export default {
         })
         .catch(function (error) {
           console.log(error.response.status)
-          if (error.response.status === 400) {
+          if (error.response.status === 404) {
             // 登録失敗した時の処理
             self.postData.email = ''
             self.postData.password = ''
             // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
+            self.isError = true
           }
         })
       }
@@ -52,6 +56,7 @@ export default {
   },
   data () {
     return {
+      isError: false,
       postData: {
         email: '',
         password: ''
@@ -105,5 +110,29 @@ export default {
   right: 10%;
   background-color: darkorange;
   color: #ffffff;
+}
+
+.signin__inputData-info {
+  background-color: #015fad;
+  color: #ffffff;
+  text-align: center;
+  padding: 2%;
+  margin-bottom: 5%;
+}
+
+.signin__inputData-error {
+  background-color: indianred;
+  width: 90%;
+  text-align: center;
+  padding: 5% 2%;
+  margin: 2% auto; 
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.signin__to-signup-link {
+  color: #01288d;
+  display: block;
+  margin-top: 22%;
 }
 </style>
