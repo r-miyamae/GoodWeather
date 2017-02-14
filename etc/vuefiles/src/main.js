@@ -10,6 +10,7 @@ import Top from './components/Top.vue'
 import SignUp from './components/Signup/Signup.vue'
 import SignIn from './components/Signin/Signin.vue'
 import UserClothesList from './components/UserClothes/UserClothesList.vue'
+import UserClothesRegister from './components/UserClothes/UserClothesRegister.vue'
 
 const router = new VueRouter({
   routes: [
@@ -17,7 +18,8 @@ const router = new VueRouter({
     {path: '/top', component: Top},
     {path: '/signup', component: SignUp},
     {path: '/signin', component: SignIn},
-    {path: '/clothes', component: UserClothesList}
+    {path: '/clothes', component: UserClothesList},
+    {path: '/register', component: UserClothesRegister}
   ]
 })
 

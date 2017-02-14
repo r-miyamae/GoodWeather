@@ -9,6 +9,7 @@
         <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle">Top</router-link>
         <router-link to="/#top__weather" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle">Weather</router-link>
         <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle" >UserClothes</router-link>
+        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="resetToggle" >UserClothRegist</router-link>
       </ul>
     </div>
   </div>
