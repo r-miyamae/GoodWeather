@@ -6,8 +6,7 @@
         <router-link to="/signin" class="header__menu-content-signin" v-on:click.native="menuForNonSignIn">Sign in</router-link>
       </div>
       <ul class="header__menu-content-linkList">
-        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Top</router-link>
-        <router-link to="/#top__weather" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Weather</router-link>
+        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Clothes &amp; Weather</router-link>
         <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothes</router-link>
         <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothRegist</router-link>
       </ul>
