@@ -295,7 +295,11 @@ public class RootApi {
         responseData.setWeather(weather);
         responseData.setClothes(clothes);
         responseData.setUser_place(location);
-        responseData.setUser_gender(session.getAttribute("gender").toString());
+        if(session != null){
+            responseData.setUser_gender(session.getAttribute("gender").toString());
+        }else{
+            responseData.setUser_gender("");
+        }
         System.out.println(responseData.toString());
         return responseData;//springが勝手にJSONにしてくれるらしい
     }
