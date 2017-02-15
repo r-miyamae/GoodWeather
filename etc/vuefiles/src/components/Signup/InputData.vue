@@ -1,6 +1,6 @@
 <template>
   <div class="signup__inputData">
-    <div v-if="isError" class="signup__inputData-error">登録に失敗しました</div>
+    <div v-if="isError" class="signup__inputData-error">Failed to Sign up</div>
     <form onsubmit="return false;">
       <label for="email">E-Mail</label><br>
       <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
@@ -45,13 +45,12 @@ export default {
           }
         })
         .catch(function (error) {
-          console.log(error.response.status)
           if (error.response.status === 400) {
             // 登録失敗した時の処理
+            self.postData.email = ''
             self.postData.password = ''
             self.postData.location = 'tokyo'
             self.postData.sex = ''
-            // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
             self.isError = true
           }
         })

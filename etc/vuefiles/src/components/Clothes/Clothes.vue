@@ -2,8 +2,8 @@
     <div class="top__clothes">
       <div class="top__clothes-content" :class="{ 'top__clothes-back-side': isTurn }" @click="doTurn">
         <div class="top__clothes-front">
-          <ClothHeader></ClothHeader>
-          <ClothImages :clothes="clothes"></ClothImages>
+          <ClothHeader :gender="gender"></ClothHeader>
+          <ClothImages :clothes="clothes" :gender="gender"></ClothImages>
         </div>
         <ClothesDescription :dayDescription="clothes.day_clothes_description" :nightDescription="clothes.night_clothes_description"></ClothesDescription>
       </div>
@@ -18,7 +18,7 @@ import ClothesDescription from './ClothesDescription.vue'
 import OuterToggleButton from './OuterToggleButton.vue'
 
 export default {
-  props: ['clothes'],
+  props: ['clothes', 'gender'],
   components: {
     ClothHeader,
     ClothImages,

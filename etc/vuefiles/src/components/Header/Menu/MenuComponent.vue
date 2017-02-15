@@ -7,8 +7,8 @@
       </div>
       <ul class="header__menu-content-linkList">
         <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Clothes &amp; Weather</router-link>
-        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothes</router-link>
-        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">UserClothRegist</router-link>
+        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">Your's Clothes</router-link>
+        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">Your's Clothes Register</router-link>
       </ul>
       <div class="header__menu-content-logout">
         <button class="header__menu-content-logout-button" type="button" @click="signOut">Sign Out</button>

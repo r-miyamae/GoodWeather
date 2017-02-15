@@ -1,7 +1,11 @@
 <template>
-    <div class="top__clothes-image">
+    <div class="top__clothes-image" v-if="gender === '' || gender === undefined">
         <FullClothImage gender="MENS" :clothes="clothes.man_clothes"></FullClothImage>
         <FullClothImage gender="WOMENS" :clothes="clothes.woman_clothes"></FullClothImage>
+        <span class="top__clothes-image-info">＼</span>
+    </div>
+    <div class="top__clothes-image-full" v-else="">
+        <FullClothImage :gender="gender" :clothes="clothes.man_clothes"></FullClothImage>
         <span class="top__clothes-image-info">＼</span>
     </div>
 </template>
@@ -11,7 +15,7 @@ import FullClothImage from './FullClothImage.vue'
 export default {
   created: function () {
   },
-  props: ['clothes'],
+  props: ['clothes', 'gender'],
   components: {
     FullClothImage
   }
@@ -36,5 +40,16 @@ export default {
     color: white;
     font-weight: 900;
     font-size: 3em;
+}
+
+.top__clothes-image-full {
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.top__clothes-image-full > div {
+    width: 70%;
+    margin: 0 auto;
 }
 </style>

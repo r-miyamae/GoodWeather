@@ -1,7 +1,10 @@
 <template>
-    <div class="top__cloth-header">
+    <div class="top__cloth-header" v-if="gender === '' || gender === undefined">
         <ClothHeaderParts gender="MENS"></ClothHeaderParts>
-        <ClothHeaderParts gender="WOMENS"></ClothHeaderParts>           
+        <ClothHeaderParts gender="WOMENS"></ClothHeaderParts>
+    </div>
+    <div class="top__cloth-header-full" v-else="">
+        <ClothHeaderParts :gender="gender"></ClothHeaderParts>
     </div>
 </template>
 
@@ -9,6 +12,7 @@
 import ClothHeaderParts from './ClothHeaderParts.vue'
 
 export default {
+  props: ['gender'],
   components: {
     ClothHeaderParts
   }
@@ -19,5 +23,9 @@ export default {
 .top__cloth-header {
     height: 10%;
     display: flex;
+}
+
+.top__cloth-header-full div {
+    width: 100%;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <Clothes :clothes="dataForTop.clothes"></Clothes>
+    <Clothes :clothes="dataForTop.clothes" :gender="dataForTop.user_gender"></Clothes>
     <Weather :weather="dataForTop.weather"></Weather>
     <SelectLocation :reciveLocation="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
   </div>
@@ -51,7 +51,8 @@ export default {
             bottom_color: ''
           }
         },
-        user_place: ''
+        user_place: '',
+        user_gender: ''
       }
 
       var self = this
@@ -61,7 +62,7 @@ export default {
       .then(function (response) {
         self.dataForTop = response.data
         self.dataForTop.user_place = self.dataForTop.user_place.slice(0, -3)
-        console.log(self.dataForTop.user_place) // nagano
+        console.log(self.dataForTop.user_gender) // nagano
         console.log(self.dataForTop.weather)
       }).catch(function (error) {
         console.log(error)
