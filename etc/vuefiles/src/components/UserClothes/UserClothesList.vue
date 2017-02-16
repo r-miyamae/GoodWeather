@@ -1,6 +1,6 @@
 <template>
   <div class="clothes">
-    <h3 class="clothes__caption">Cloth List</h3>
+    <h3 class="clothes__caption">服一覧</h3>
     <div class="clothes__list">
       <div v-for="cloth in clothes" class="clothes__list-cloth">
         <img class="clothes__list-cloth-img" :src="cloth.clothIcon">

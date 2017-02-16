@@ -6,9 +6,9 @@
         <router-link to="/signin" class="header__menu-content-signin" v-on:click.native="menuForNonSignIn">Sign in</router-link>
       </div>
       <ul class="header__menu-content-linkList">
-        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">Clothes &amp; Weather</router-link>
-        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">Your's Clothes</router-link>
-        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">Your's Clothes Register</router-link>
+        <router-link to="/" class="header__menu-content-top" tag="li" v-on:click.native="menuForNonSignIn">今日の服装</router-link>
+        <router-link to="/clothes" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">服一覧</router-link>
+        <router-link to="/register" class="header__menu-content-top" tag="li" v-on:click.native="menuForSignIn">新しい服登録</router-link>
       </ul>
       <div class="header__menu-content-logout">
         <button class="header__menu-content-logout-button" type="button" @click="signOut">Sign Out</button>
@@ -111,7 +111,7 @@
 
 .header__menu-content-buttons {
   width: 100%;
-  height: 8%;
+  height: 6%;
   display: flex;
 }
 

@@ -10,14 +10,13 @@
 export default {
   props: ['reciveLocation'],
   updated: function () {
-    console.log(this.location)
     this.$emit('reloadLocation', this.location) // v-on を使ってこのコンポーネントを参照している関数に this.location を渡す
   },
   data () {
     return {
       location: 'nonlocation',
       options: [
-        {value: 'nonlocation', text: 'Select Your Location'},
+        {value: 'nonlocation', text: '別の都道府県'},
         {value: 'sapporo', text: '北海道'},
         {value: 'aomori', text: '青森県'},
         {value: 'morioka', text: '岩手県'},

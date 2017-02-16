@@ -2,13 +2,10 @@
     <footer class="top__footer">
         <BacktoTop></BacktoTop>
         <div class="top__footer-contents">
-            <br>
-            Welcome to good weahter. <br>
-            This application made by @ahah0807_alg &amp; @r-miyamae.
-            <br>
-            for media-frontier 2017.
-            <br>
-            &copy; Good Weather,. inc
+            GoodWeather をご覧頂きありがとうございます。<br>
+            OIC（専門学校）の作品展 Media Frontier 2017 のための作品です。<br>
+            制作: @ahaha0807_alg (Twitter) &amp; @r-miyamae &amp; 同学校デザイナー の3名で作成しました。<br>
+            日本の制度が高い天気情報API や 服系通販サイトのご協力をお待ちしています。
         </div>
     </footer>
 </template>
@@ -31,6 +28,7 @@ export default {
 }
 
 .top__footer-contents {
-    font-size: 3em;
+    font-size: 2.6em;
+    padding: 3%;
 }
 </style>

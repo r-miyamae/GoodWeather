@@ -1,21 +1,21 @@
 <template>
   <div class="signup__inputData">
-    <div v-if="isError" class="signup__inputData-error">Failed to Sign up</div>
+    <div v-if="isError" class="signup__inputData-error">新規登録に失敗しました</div>
     <form onsubmit="return false;">
-      <label for="email">E-Mail</label><br>
-      <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
-      <label for="password">Password</label><br>
-      <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="Please Input Password"><br>
-      <label for="location">Your Location</label><br><br>
+      <label for="email">メールアドレス</label><br>
+      <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="メールアドレスを入力してください"><br>
+      <label for="password">パスワード</label><br>
+      <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="パスワードを決めてください"><br>
+      <label for="location">よく行く都道府県</label><br><br>
       よく確認する地点を登録することで、TOPページに表示される天気の基準点が変更されます
       <select class="signup__selectLocation" name="location" v-model="postData.location" options="options">
         <option v-for="option in options" :value="option.value">{{ option.text }}</option>
       </select>
       <div class="signup__selectSex">
         <br>
-        <label for="sex">Gender</label><br><br>
-        MEN <input type="radio" value="MEN" name="sex" required v-model="postData.sex">
-        WOMEN <input type="radio" value="WOMEN" name="sex" required v-model="postData.sex">
+        <label for="sex">性別</label><br><br>
+        男性 <input type="radio" value="MEN" name="sex" required v-model="postData.sex">
+        女性 <input type="radio" value="WOMEN" name="sex" required v-model="postData.sex">
       </div>
       <button class="signup__submit" @click="post">SignUp</button>
     </form>

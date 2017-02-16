@@ -1,14 +1,14 @@
 <template>
   <div class="register">
-    <h3 class="register__caption">Register Clothes</h3>
+    <h3 class="register__caption">服装登録</h3>
     <form action="return false;" class="register__cloth-form">
-      <label class="register__clothes-label" for="clothes-name">Clothes Name</label>
+      <label class="register__clothes-label" for="clothes-name">服の名前 <span class="register__clothes-label-optional">※任意</span></label>
       <input type="text" v-model="name" class="register__clothes-name" name="clothes-name" placeholder="例: 厚手のニットセーター">
-      <label class="register__clothes-label" for="clothes-color">Clothes Color</label>
+      <label class="register__clothes-label" for="clothes-color">服の色</label>
       <compact-picker class="register__clothes-color" v-model="color" @change-color="onChange"></compact-picker>
-      <label class="register__clothes-label" for="clothes-genre">Clothes Genre</label>
+      <label class="register__clothes-label" for="clothes-genre">ジャンル選択</label>
       <GenreSelect :color="color" v-on:submitGenre="submitGenre"></GenreSelect>
-      <button class="register__clothes-submit" type="button" @click="post">Submit</button>
+      <button class="register__clothes-submit" type="button" @click="post">登録</button>
   </div>
 </template>
 
@@ -112,6 +112,11 @@ export default {
   margin: 2% auto;
   border-bottom: 4px solid #333333;
   width: 95%;
+}
+
+.register__clothes-label-optional {
+  font-size: 2em;
+  color: #666666;
 }
 
 /* color picker css */

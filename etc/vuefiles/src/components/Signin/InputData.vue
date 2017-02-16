@@ -1,14 +1,14 @@
 <template>
   <div class="signin__inputData">
-    <div class="signin__inputData-info">Please Sign in</div>
-    <div v-if="isError" class="signin__inputData-error">Failed to Sign in</div>
+    <div class="signin__inputData-info">サインインしてください</div>
+    <div v-if="isError" class="signin__inputData-error">サインインに失敗しました</div>
     <form onsubmit="return false;">
-      <label for="email">E-Mail</label><br>
-      <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="Please Input Email Address"><br>
-      <label for="password">Password</label><br>
-      <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="Please Input Password"><br>
+      <label for="email">メールアドレス</label><br>
+      <input name="email" type="email" @keyup.enter="post" v-model="postData.email" required placeholder="メールアドレスを入力してください"><br>
+      <label for="password">パスワード</label><br>
+      <input name="password" type="password" @keyup.enter="post" v-model="postData.password" required placeholder="パスワードを入力してください"><br>
       <button class="signin__submit" type="button" @click="post">Sign In</button>
-      <router-link class="signin__to-signup-link" to="/signup">Go to Sign up Page</router-link>
+      <router-link class="signin__to-signup-link" to="/signup">アカウントを持っていない方はこちら</router-link>
     </form>
   </div>
 </template>

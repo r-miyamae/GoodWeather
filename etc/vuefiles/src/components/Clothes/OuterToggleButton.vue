@@ -1,6 +1,6 @@
 <template>
   <div v-if="manOuterData != '' || isDisplay == false" class="top__clothes-outer-toggle-button" @click="outerToggle">
-    See the <span v-if="isDisplay"><b>inner</b></span><span v-else><b>outer</b></span> 
+    <span v-if="isDisplay"><b>インナー</b></span><span v-else><b>アウター</b></span>を見る 
   </div>
 </template>
 
