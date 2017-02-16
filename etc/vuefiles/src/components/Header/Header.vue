@@ -46,7 +46,7 @@ export default {
         margin: 0 auto;
         padding: 1.5em 0;
         width: 100%;
-        height: 3em;
+        height: 2em;
         background-color: #01288d;
         color: #ffffff;
         font-size: 2em;

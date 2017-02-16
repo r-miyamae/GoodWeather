@@ -115,7 +115,7 @@ export default {
 }
 
 .register__clothes-label-optional {
-  font-size: 2em;
+  font-size: 0.5em;
   color: #666666;
 }
 

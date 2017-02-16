@@ -12,13 +12,13 @@ export default {
 
 <style>
 .top__weather-user-location {
-    height: 20%;
+    height: 100%;
+    width: 50%;
+    padding-top: 5%;
     color: #01288d;
-    font-size: 3em;
-    padding-top: 2%;
-    padding-left: 1em;
-    width: 40%;
-    float: right;
+    overflow: auto;
+    overflow-wrap: break-word;
+    font-size: 4em;
     text-align: center
 }
 </style>

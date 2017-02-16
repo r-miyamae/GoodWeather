@@ -5,7 +5,7 @@
           <ClothHeader :gender="gender"></ClothHeader>
           <ClothImages :clothes="clothes" :gender="gender"></ClothImages>
         </div>
-        <ClothesDescription :dayDescription="clothes.day_clothes_description" :nightDescription="clothes.night_clothes_description"></ClothesDescription>
+        <Icon :weatherImageName='weatherImageName' :temperature='temperature' :location='location'></Icon>
       </div>
       <OuterToggleButton v-on:hideOuter="hideOuter" v-on:indicateOuter="indicateOuter" :manOuterData="clothes.man_clothes.outer_image"></OuterToggleButton>        
     </div>
@@ -14,15 +14,15 @@
 <script>
 import ClothHeader from './ClothHeader.vue'
 import ClothImages from './ClothImages.vue'
-import ClothesDescription from './ClothesDescription.vue'
+import Icon from '../Weather/Icon.vue'
 import OuterToggleButton from './OuterToggleButton.vue'
 
 export default {
-  props: ['clothes', 'gender'],
+  props: ['clothes', 'gender', 'weatherImageName', 'temperature', 'location'],
   components: {
     ClothHeader,
     ClothImages,
-    ClothesDescription,
+    Icon,
     OuterToggleButton
   },
   methods: {

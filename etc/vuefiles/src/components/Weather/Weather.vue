@@ -1,22 +1,16 @@
 <template>
     <div class="top__weather">
-        <Icon :weatherImageName="weather.weather_icon"></Icon>
-        <TempertureHumidity :maxTemperature="weather.max_temperature" :minTemperature="weather.min_temperature" :humidity="weather.humidity"></TempertureHumidity>
-        <RecivedLocation :location="location"></RecivedLocation>
+        <ClothesDescription :dayDescription="dayDescription" :nightDescription="nightDescription"></ClothesDescription>
     </div>
 </template>
 
 <script>
-import Icon from './Icon.vue'
-import TempertureHumidity from './TempertureHumidity.vue'
-import RecivedLocation from './RecivedLocation.vue'
+import ClothesDescription from '../Clothes/ClothesDescription.vue'
 
 export default {
-  props: ['weather', 'location'],
+  props: ['dayDescription', 'nightDescription'],
   components: {
-    Icon,
-    TempertureHumidity,
-    RecivedLocation
+    ClothesDescription
   }
 }
 </script>
@@ -24,6 +18,6 @@ export default {
 <style>
 .top__weather {
     width: 100%;
-    height: 20%;
+    height: 21%;
 }
 </style>

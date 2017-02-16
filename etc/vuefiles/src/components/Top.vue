@@ -1,8 +1,8 @@
 <template>
-  <div class="top">
-    <Clothes :clothes="dataForTop.clothes" :gender="dataForTop.user_gender"></Clothes>
-    <Weather :weather="dataForTop.weather" :location="dataForTop.user_place"></Weather>
-    <SelectLocation :reciveLocation="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
+  <div class='top'>
+    <Clothes :clothes='dataForTop.clothes' :gender='dataForTop.user_gender' :weatherImageName='dataForTop.weather.weather_icon' :temperature='dataForTop.weather.max_temperature' :location='dataForTop.user_place'></Clothes>
+    <Weather :dayDescription="dataForTop.clothes.day_clothes_description" :nightDescription="dataForTop.clothes.night_clothes_description"></Weather>
+    <SelectLocation :reciveLocation='dataForTop.user_place' v-on:reloadLocation='reGetDatas'></SelectLocation>
   </div>
 </template>
 

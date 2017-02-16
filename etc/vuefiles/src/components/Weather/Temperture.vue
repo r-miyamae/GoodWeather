@@ -1,23 +1,21 @@
 <template>
     <div class="top__weather-temperture">
-        <span class="top__weather-temperture-max">{{ maxTemperature }} ℃</span><br>
-        /
-        <span class="top__weather-temperture-min">{{ minTemperature }} ℃</span>
+        <span class="top__weather-temperture-max">{{ temperature }} ℃</span><br>
     </div>
 </template>
 
 <script>
 export default {
-  props: ['maxTemperature', 'minTemperature']
+  props: ['temperature']
 }
 </script>
 
 <style>
 .top__weather-temperture {
     width: 100%;
-    height: 50%;
-    margin: 0 auto;
-    font-size: 300%;
+    height: 100%;
+    padding-top: 10%;
+    font-size: 3em;
     text-align: center;
 }
 
