@@ -80,7 +80,7 @@
 
 .open {
   width: 70vw;
-  height: 100vh;
+  height: 130vh;
   position: fixed;
   top: 0;
   right: -70vw;
@@ -95,7 +95,7 @@
 }
 .close {
   width: 70vw;
-  height: 100vh;
+  height: 130vh;
   position: fixed;
   top: 0;
   right: -70vw;
@@ -153,7 +153,7 @@
 
 .header__menu-content-logout {
   position: absolute;
-  bottom: 5%;
+  bottom: 35%;
   right: 3%;
   width: 50%;
 }

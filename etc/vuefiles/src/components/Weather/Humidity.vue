@@ -16,6 +16,7 @@ export default {
     height: 50%;
     vertical-align: middle;
     margin: 0 auto;
+    margin-top: 10%;
     font-size: 300%;
     text-align: center;
 }

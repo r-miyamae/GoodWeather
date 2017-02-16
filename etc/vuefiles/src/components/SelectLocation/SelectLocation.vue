@@ -9,20 +9,15 @@
 <script>
 export default {
   props: ['reciveLocation'],
-  mounted: function () {
-    console.log(this.reciveLocation) // おそらく JS 読み込み順番の問題でここに親からpropsとしてデータが入ってこやん。直さないかん。
-    if (this.location !== this.reciveLocation && this.reciveLocation !== undefined && this.reciveLocation !== '') {
-      this.location = this.reciveLocation
-    }
-  },
   updated: function () {
     console.log(this.location)
     this.$emit('reloadLocation', this.location) // v-on を使ってこのコンポーネントを参照している関数に this.location を渡す
   },
   data () {
     return {
-      location: 'tokyo',
+      location: 'nonlocation',
       options: [
+        {value: 'nonlocation', text: 'Select Your Location'},
         {value: 'sapporo', text: '北海道'},
         {value: 'aomori', text: '青森県'},
         {value: 'morioka', text: '岩手県'},
@@ -82,12 +77,12 @@ export default {
 	-moz-appearance: none;
 	appearance: none;
 
-    width: 100%;
-    height: 100%;
-    border: 0;
-    background-color: #01288d;
-    color: white;
-    font-size: 5em;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #01288d;
+  color: white;
+  font-size: 5em;
 }
 
 .top__selectLocation option {
@@ -96,7 +91,7 @@ export default {
 
 .top__selectLocation-wrapper {
     width: 100%;
-    height: 10%;
+    height: 9%;
     display: -webkit-box;
     display: box;
     box-pack: center;

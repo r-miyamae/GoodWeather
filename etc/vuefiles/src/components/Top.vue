@@ -1,7 +1,7 @@
 <template>
   <div class="top">
     <Clothes :clothes="dataForTop.clothes" :gender="dataForTop.user_gender"></Clothes>
-    <Weather :weather="dataForTop.weather"></Weather>
+    <Weather :weather="dataForTop.weather" :location="dataForTop.user_place"></Weather>
     <SelectLocation :reciveLocation="dataForTop.user_place" v-on:reloadLocation="reGetDatas"></SelectLocation>
   </div>
 </template>

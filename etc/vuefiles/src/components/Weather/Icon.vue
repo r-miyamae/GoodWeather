@@ -16,6 +16,8 @@ export default {
 <style>
 .top__weather-icon {
     height: 100%;
-    margin-left: 35%;
+    width: 40%;
+    margin-left: 10%;
+    float: left;
 }
 </style>

@@ -2,10 +2,9 @@
     <footer class="top__footer">
         <BacktoTop></BacktoTop>
         <div class="top__footer-contents">
-            this is footer.
             <br>
-            welcome to good weahter. <br>
-            this application made by @ahah0807_alg &amp; @r-miyamae.
+            Welcome to good weahter. <br>
+            This application made by @ahah0807_alg &amp; @r-miyamae.
             <br>
             for media-frontier 2017.
             <br>

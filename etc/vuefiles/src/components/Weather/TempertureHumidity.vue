@@ -20,8 +20,9 @@ export default {
 
 <style>
 .top__weather-tempertureHumidity {
-    width: 30%;
     height: 60%;
-    margin-top: 10%;
+    width: 40%;
+    margin-top: 5%;
+    float: right;
 }
 </style>
