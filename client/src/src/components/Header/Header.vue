@@ -43,13 +43,12 @@ export default {
 
 <style>
     header {
-        margin: 0 auto;
-        padding: 1.5em 0;
+        margin: 0;
+        padding-top: 2%;
         width: 100%;
-        height: 2em;
+        height: 8%;
         background-color: #01288d;
         color: #ffffff;
-        font-size: 2em;
         display: flex;        
     }
 </style>
