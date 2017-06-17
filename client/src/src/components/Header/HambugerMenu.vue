@@ -1,6 +1,7 @@
 <template>
-	<div class="header__menu-button">
-		<a class="menu-trigger" :class="{ active: menuActive }" @click="menuToggle"> <!--アニメーションさせるためにこいつに active classを付与する-->
+	<div class="header__menu-button" @click="menuToggle">
+		<a class="menu-trigger" :class="{ active: menuActive }">
+			<!--アニメーションさせるためにこいつに active classを付与する-->
 			<span></span>
 			<span></span>
 			<span></span>
@@ -10,26 +11,28 @@
 
 <script>
 export default {
-  props: ['menuActive'],
-  methods: {
-    menuToggle: function () {
-      if (this.menuActive) {
-        this.$emit('changeMenu', true)
-      } else {
-        this.$emit('changeMenu', false)
-      }
-    }
-  }
+	props: ['menuActive'],
+	methods: {
+		menuToggle: function () {
+			if (this.menuActive) {
+				this.$emit('changeMenu', true)
+			} else {
+				this.$emit('changeMenu', false)
+			}
+		}
+	}
 }
 </script>
 
 <style>
 .header__menu-button {
-	margin: 0;
+	position: absolute;
+	right: 1em;
+	width: 35px;
+	margin-top: 5px;
 	padding: 0;
-	width: 10%;
-	height: 100%;
 	z-index: 1000;
+	cursor: pointer;
 }
 
 .menu-trigger,
@@ -37,41 +40,46 @@ export default {
 	display: inline-block;
 	transition: all .4s;
 	box-sizing: border-box;
+	cursor: pointer;
 }
+
 .menu-trigger {
-	margin-top: 1em;
 	position: relative;
 	width: 100%;
-	height: 2em;
-	font-size: 0.7em;
+	height: 1.5em;
 }
+
 .menu-trigger span {
 	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 20%;
+	width: 35px;
+	height: 3px;
 	background-color: white;
 	border-radius: 4px;
 }
+
 .menu-trigger span:nth-of-type(1) {
 	top: 0;
 }
+
 .menu-trigger span:nth-of-type(2) {
-	top: 0.8em;
+	top: 10px;
 }
+
 .menu-trigger span:nth-of-type(3) {
 	bottom: 0;
 }
 
 .menu-trigger.active span:nth-of-type(1) {
-	-webkit-transform: translateY(20px) rotate(-45deg);
-	transform: translateY(20px) rotate(-45deg);
+	-webkit-transform: translateY(11px) rotate(-45deg);
+	transform: translateY(11px) rotate(-45deg);
 }
+
 .menu-trigger.active span:nth-of-type(2) {
 	opacity: 0;
 }
+
 .menu-trigger.active span:nth-of-type(3) {
-	-webkit-transform: translateY(-20px) rotate(45deg);
-	transform: translateY(-20px) rotate(45deg);
+	-webkit-transform: translateY(-11px) rotate(45deg);
+	transform: translateY(-11px) rotate(45deg);
 }
 </style>
