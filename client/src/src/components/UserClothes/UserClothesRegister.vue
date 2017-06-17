@@ -2,13 +2,16 @@
   <div class="register">
     <h3 class="register__caption">服装登録</h3>
     <form action="return false;" class="register__cloth-form">
-      <label class="register__clothes-label" for="clothes-name">服の名前 <span class="register__clothes-label-optional">※任意</span></label>
+      <label class="register__clothes-label" for="clothes-name">服の名前
+        <span class="register__clothes-label-optional">※任意</span>
+      </label>
       <input type="text" v-model="name" class="register__clothes-name" name="clothes-name" placeholder="例: 厚手のニットセーター">
       <label class="register__clothes-label" for="clothes-color">服の色</label>
       <compact-picker class="register__clothes-color" v-model="color" @change-color="onChange"></compact-picker>
       <label class="register__clothes-label" for="clothes-genre">ジャンル選択</label>
       <GenreSelect :color="color" v-on:submitGenre="submitGenre"></GenreSelect>
       <button class="register__clothes-submit" type="button" @click="post">登録</button>
+    </form>
   </div>
 </template>
 
@@ -22,14 +25,14 @@ export default {
     var url = '/api/v1/user/signin'
 
     axios.get(url)
-    .then(function (response) {
-    })
-    .catch(function (error) {
-      console.log(error)
-      window.location = '/#/signin'
-    })
+      .then(function (response) {
+      })
+      .catch(function (error) {
+        console.log(error)
+        window.location = '/#/signin'
+      })
   },
-  data () {
+  data() {
     return {
       name: '',
       color: '#ffffff',
@@ -60,18 +63,18 @@ export default {
         genre: this.genre_code,
         icon: this.icon_name
       })
-      .then(function (response) {
-        if (response.status === 200) {
-          window.location = '/#/'
-        }
-      })
-      .catch(function (error) {
-        console.log(error.response.status)
-        if (error.response.status === 400) {
-          // 登録失敗した時の処理
-          // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
-        }
-      })
+        .then(function (response) {
+          if (response.status === 200) {
+            window.location = '/#/'
+          }
+        })
+        .catch(function (error) {
+          console.log(error.response.status)
+          if (error.response.status === 400) {
+            // 登録失敗した時の処理
+            // TODO: ここで何かしらの失敗したことを知らせるメッセージを画面に表示する
+          }
+        })
     }
   }
 }
@@ -119,7 +122,9 @@ export default {
   color: #666666;
 }
 
+
 /* color picker css */
+
 .register__clothes-color {
   height: 200px !important;
   margin: 0 auto;
