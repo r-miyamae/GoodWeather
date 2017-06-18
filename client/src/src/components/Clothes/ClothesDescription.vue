@@ -25,10 +25,6 @@ export default {
 }
 
 .top__clothes-description-content {
-    padding: 5%;
-    height: 80%;
-    overflow: scroll;
-    overflow-wrap: break-word;
     margin: 0 auto;
     position: relative;
     text-align: center;

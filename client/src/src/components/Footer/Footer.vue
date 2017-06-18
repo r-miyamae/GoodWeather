@@ -2,10 +2,10 @@
     <footer class="top__footer">
         <BacktoTop></BacktoTop>
         <div class="top__footer-contents">
-            GoodWeather をご覧頂きありがとうございます。<br>
-            OIC（専門学校）の作品展 Media Frontier 2017 のための作品です。<br>
-            制作: @ahaha0807_alg (Twitter) &amp; @r-miyamae &amp; 同学校デザイナー の3名で作成しました。<br>
-            日本の精度が高い天気情報API や 服系通販サイトのご協力をお待ちしています。
+            <router-link to="/">TOP</router-link>
+            <router-link to="/howtouse">使い方</router-link>
+            <router-link to="/madeby">製作者</router-link>
+            <!-- &copy;Good Weather. @ahaha0807_alg.-->
         </div>
     </footer>
 </template>
@@ -14,21 +14,35 @@
 import BacktoTop from './BacktoTop.vue'
 
 export default {
-  components: {
-    BacktoTop
-  }
+    components: {
+        BacktoTop
+    }
 }
 </script>
 
 <style>
 .top__footer {
     width: 100%;
-    height: 42%;
-    background-color: #cccccc;
+    height: 15%;
+    background-color: #aaaaaa;
 }
 
 .top__footer-contents {
-    font-size: 2.6em;
-    padding: 3%;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    overflow: hidden;
+    padding-top: 1%;
+}
+
+.top__footer-contents a {
+    padding: 0 1%;
+    font-size: 120%;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.top__footer-contents a:hover {
+    color: #01288d;
 }
 </style>

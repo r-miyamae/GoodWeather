@@ -17,11 +17,11 @@ export default {
 <style>
 .top__footer-backtotop {
     width: 100%;
-    height: 20%;
-    padding-top: 1%;
-    font-size: 4em;
+    height: 30%;
+    font-size: 150%;
     text-align: center;
-    background-color: lightskyblue;
-    color: white;
+    background-color: #44ccff;
+    color: #ffffff;
+    cursor: pointer;
 }
 </style>
