@@ -38,15 +38,12 @@ export default {
     right: 0;
     top: 0%;
     color: white;
-    font-weight: 900;
-    font-size: 3em;
 }
 
 .top__clothes-image-info img {
-    width: 15%;
+    width: 4em;
+    height: 4em;
     display: block;
-    position: relative;
-    left: 85%;
 }
 
 .top__clothes-image-full {
