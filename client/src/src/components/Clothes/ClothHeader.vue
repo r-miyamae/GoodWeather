@@ -24,8 +24,4 @@ export default {
     height: 10%;
     display: flex;
 }
-
-.top__cloth-header-full div {
-    width: 100%;
-}
 </style>

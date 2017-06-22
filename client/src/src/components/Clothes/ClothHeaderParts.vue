@@ -1,34 +1,25 @@
 <template>
-    <div :class="'top__cloth-header-' + gender " class="top__cloth-header-parts">
-        <h2>{{ gender }}</h2>
+    <div class="top__cloth-header-parts">
+        {{ gender }}
     </div>
 </template>
 
 <script>
 export default {
-  name: 'cloth-header-parts',
-  props: ['gender']
+    name: 'cloth-header-parts',
+    props: ['gender']
 }
 </script>
 
 <style>
 .top__cloth-header-parts {
-    margin: 0;
-    padding: 0;
     width: 50%;
-    border-bottom: solid 4px silver;
-}
-
-.top__cloth-header-parts h2 {
-    margin: 0;
-    padding: 3% 0;
-    font-size: 4em;
+    padding-top: 1vh;
+    border-bottom: solid 2px silver;
+    border: solid 1px silver;
+    font-weight: bold;
+    font-size: 150%;
     text-align: center;
     color: #000050;
 }
-
-.top__cloth-header-MENS {
-    border-right: solid 4px silver;
-}
-
 </style>

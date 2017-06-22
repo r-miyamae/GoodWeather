@@ -13,7 +13,7 @@ export default {
 
 <style>
 .top__cloth-image-outer {
-    height: 45%;
+    height: 50%;
     width: 100%;
     position: absolute;
     top: 0%;

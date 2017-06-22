@@ -14,7 +14,7 @@ export default {
 <style>
 .top__cloth-image-bottom {
     position: relative;
-    height: 55%;
+    height: 50%;
     z-index: 10;
 }
 

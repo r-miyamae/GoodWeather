@@ -25,7 +25,7 @@ export default {
 <style>
 .top__clothes-image {
     width: 100%;
-    height: 80%;
+    height: 90%;
     display: flex;
     position: absolute;
     -webkit-backface-visibility: hidden;
