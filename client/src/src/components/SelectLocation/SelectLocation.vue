@@ -77,11 +77,10 @@ export default {
   appearance: none;
 
   width: 100%;
-  height: 100%;
   border: 0;
   background-color: #01288d;
   font-size: 150%;
-  color: white;
+  color: #ffffff;
 }
 
 .top__selectLocation-wrapper {
@@ -89,7 +88,7 @@ export default {
   display: box;
 
   width: 100%;
-  height: 9%;
+  height: 10%;
   background-color: #01288d;
 
   box-pack: center;

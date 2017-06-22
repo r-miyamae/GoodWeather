@@ -1,5 +1,5 @@
 <template>
-    <div class="top__weather">
+    <div class="top__clothes-description">
         <ClothesDescription :dayDescription="dayDescription" :nightDescription="nightDescription"></ClothesDescription>
     </div>
 </template>
@@ -8,16 +8,17 @@
 import ClothesDescription from '../Clothes/ClothesDescription.vue'
 
 export default {
-  props: ['dayDescription', 'nightDescription'],
-  components: {
-    ClothesDescription
-  }
+    props: ['dayDescription', 'nightDescription'],
+    components: {
+        ClothesDescription
+    }
 }
 </script>
 
 <style>
-.top__weather {
+.top__clothes-description {
     width: 100%;
-    height: 21%;
+    height: 20%;
+    overflow: hidden;
 }
 </style>
